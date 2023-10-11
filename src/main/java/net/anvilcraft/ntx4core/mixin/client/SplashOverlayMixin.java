@@ -142,8 +142,8 @@ public class SplashOverlayMixin extends Overlay {
         RenderSystem.setShaderTexture(0, LOGO);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f2);
-        int texWidth = 642;
-        int texHeight = 254;
+        int texWidth = 997;
+        int texHeight = 318;
         drawTexture(
             matrices,
             l1 - j1 / 2,

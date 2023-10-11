@@ -5,7 +5,8 @@
     "minVersion": "0.8",
     "mixins": [],
     "client": [
-        "client.SplashOverlayMixin"
+        "client.SplashOverlayMixin",
+        "client.TitleScreenMixin"
     ],
     "injectors": {
         "defaultRequire": 1
