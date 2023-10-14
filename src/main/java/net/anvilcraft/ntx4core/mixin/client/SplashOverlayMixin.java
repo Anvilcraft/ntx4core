@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
+import com.mojang.blaze3d.platform.GlDebugInfo;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -114,20 +115,20 @@ public class SplashOverlayMixin extends Overlay {
         } else {
             f2 = 1.0F;
         }
-        //RenderSystem.enableBlend();
-        //RenderSystem.blendEquation(32774);
-        //RenderSystem.blendFunc(770, 1);
-        RenderSystem.setShader(() -> Ntx4CoreShaders.SPLASH);
-        Ntx4CoreShaders.SPLASH.getUniform("Time").set(this.time / 20.0f);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f2);
-        BufferBuilder buf = Tessellator.getInstance().getBuffer();
-        buf.begin(DrawMode.QUADS, VertexFormats.POSITION);
-        buf.vertex(-1.0, -1.0, 0.0).next();
-        buf.vertex(1.0, -1.0, 0.0).next();
-        buf.vertex(1.0, 1.0, 0.0).next();
-        buf.vertex(-1.0, 1.0, 0.0).next();
-        buf.end();
-        BufferRenderer.draw(buf);
+        // This shader is somehow borked on Intel. Not My fault!
+        if (!GlDebugInfo.getVendor().equals("Intel")) {
+            RenderSystem.setShader(() -> Ntx4CoreShaders.SPLASH);
+            Ntx4CoreShaders.SPLASH.getUniform("Time").set(this.time / 20.0f);
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f2);
+            BufferBuilder buf = Tessellator.getInstance().getBuffer();
+            buf.begin(DrawMode.QUADS, VertexFormats.POSITION);
+            buf.vertex(-1.0, -1.0, 0.0).next();
+            buf.vertex(1.0, -1.0, 0.0).next();
+            buf.vertex(1.0, 1.0, 0.0).next();
+            buf.vertex(-1.0, 1.0, 0.0).next();
+            buf.end();
+            BufferRenderer.draw(buf);
+        }
 
         l1 = (int) ((double) this.client.getWindow().getScaledWidth() * 0.5D);
         int k2 = (int) ((double) this.client.getWindow().getScaledHeight() * 0.5D);
@@ -206,7 +207,14 @@ public class SplashOverlayMixin extends Overlay {
         int i = MathHelper.ceil((float) (maxX - minX - 2) * this.progress);
         int j = Math.round(opacity * 255.0F);
         int k = Argb.getArgb(j, 116, 119, 236);
-        fill(matrices, minX + 2, minY + 2, minX + i, maxY - 2, Argb.getArgb(j, 203, 166, 247));
+        fill(
+            matrices,
+            minX + 2,
+            minY + 2,
+            minX + i,
+            maxY - 2,
+            Argb.getArgb(j, 203, 166, 247)
+        );
         fill(matrices, minX + 1, minY, maxX - 1, minY + 1, k);
         fill(matrices, minX + 1, maxY, maxX - 1, maxY - 1, k);
         fill(matrices, minX, minY, minX + 1, maxY, k);

@@ -2,6 +2,8 @@ package net.anvilcraft.ntx4core;
 
 import java.io.IOException;
 
+import com.mojang.blaze3d.platform.GlDebugInfo;
+
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Shader;
 import net.minecraft.client.render.VertexFormats;
@@ -13,6 +15,9 @@ public class Ntx4CoreShaders {
     // This method is called from SplashOverlayMixin as Forge has no fitting event that
     // fires early enough (and not too early).
     public static void registerShaders() {
+        // This shader is somehow borked on Intel. Not My fault!
+        if (GlDebugInfo.getVendor().equals("Intel"))
+            return;
         Ntx4Core.LOGGER.info("Registering Shaders");
 
         try {
