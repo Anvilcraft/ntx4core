@@ -3,6 +3,7 @@ package net.anvilcraft.ntx4core;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.util.Identifier;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -27,4 +28,8 @@ public class Ntx4Core {
     private void commonSetup(final FMLCommonSetupEvent event) {}
 
     private void clientSetup(final FMLClientSetupEvent event) {}
+
+    public static Identifier id(String s) {
+        return new Identifier(MODID, s);
+    }
 }

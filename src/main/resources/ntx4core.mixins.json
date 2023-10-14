@@ -3,7 +3,9 @@
     "package": "net.anvilcraft.ntx4core.mixin",
     "compatibilityLevel": "JAVA_17",
     "minVersion": "0.8",
-    "mixins": [],
+    "mixins": [
+        "common.RecipeManagerMixin"
+    ],
     "client": [
         "client.SplashOverlayMixin",
         "client.TitleScreenMixin"
