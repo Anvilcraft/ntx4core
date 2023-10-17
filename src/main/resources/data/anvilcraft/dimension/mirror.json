@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:overworld",
+	"generator": {
+		"type": "minecraft:noise",
+		"settings": "minecraft:overworld",
+		"biome_source": {
+			"type": "minecraft:multi_noise",
+			"preset": "overworld"
+		},
+		"seed": 0
+	},
+	"forge:use_server_seed": true
+}

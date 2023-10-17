@@ -1,0 +1,18 @@
+{
+  "schema_version": "imm_ptl:v1",
+  "from": [
+    "minecraft:overworld"
+  ],
+  "to": "anvilcraft:islands",
+  "form": {
+    "type": "imm_ptl:classical",
+    "from_frame_block": "minecraft:smooth_basalt",
+    "area_block": "minecraft:air",
+    "to_frame_block": "minecraft:smooth_basalt",
+    "generate_frame_if_not_found": true
+  },
+  "trigger": {
+    "type": "imm_ptl:throw_item",
+    "item": "dmlreforged:living_matter_hellish"
+  }
+}
