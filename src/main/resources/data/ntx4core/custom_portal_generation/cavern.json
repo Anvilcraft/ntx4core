@@ -3,16 +3,16 @@
   "from": [
     "minecraft:overworld"
   ],
-  "to": "anvilcraft:islands",
+  "to": "ntx4core:cavern",
   "form": {
     "type": "imm_ptl:classical",
-    "from_frame_block": "minecraft:smooth_basalt",
+    "from_frame_block": "minecraft:deepslate",
     "area_block": "minecraft:air",
-    "to_frame_block": "minecraft:smooth_basalt",
+    "to_frame_block": "minecraft:deepslate",
     "generate_frame_if_not_found": true
   },
   "trigger": {
     "type": "imm_ptl:throw_item",
-    "item": "dmlreforged:living_matter_hellish"
+    "item": "minecraft:amethyst_shard"
   }
 }

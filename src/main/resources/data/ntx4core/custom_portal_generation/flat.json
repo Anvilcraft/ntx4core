@@ -3,16 +3,16 @@
   "from": [
     "minecraft:overworld"
   ],
-  "to": "anvilcraft:cavern",
+  "to": "ntx4core:flat",
   "form": {
     "type": "imm_ptl:classical",
-    "from_frame_block": "minecraft:deepslate",
+    "from_frame_block": "minecraft:quartz_block",
     "area_block": "minecraft:air",
-    "to_frame_block": "minecraft:deepslate",
+    "to_frame_block": "minecraft:quartz_block",
     "generate_frame_if_not_found": true
   },
   "trigger": {
     "type": "imm_ptl:throw_item",
-    "item": "minecraft:amethyst_shard"
+    "item": "powah:crystal_blazing"
   }
 }
