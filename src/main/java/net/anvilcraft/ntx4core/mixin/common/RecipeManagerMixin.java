@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.google.gson.JsonElement;
 
 import net.anvilcraft.ntx4core.Ntx4Core;
-import net.anvilcraft.ntx4core.RecipesEvent;
+import net.anvilcraft.ntx4core.recipe.RecipesEvent;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
@@ -20,6 +20,7 @@ import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraftforge.fml.ModLoader;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 @Mixin(RecipeManager.class)
 public class RecipeManagerMixin {
@@ -36,6 +37,11 @@ public class RecipeManagerMixin {
         Profiler alec3,
         CallbackInfo ci
     ) {
+        if (!FMLEnvironment.production) {
+            Ntx4Core.LOGGER.warn("Running in dev env, skipping Recipe Event!");
+            return;
+        }
+
         Ntx4Core.LOGGER.info("Firing Recipe Event");
         Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipes = new HashMap<>();
         this.recipes.forEach((k, v) -> recipes.put(k, new HashMap<>(v)));

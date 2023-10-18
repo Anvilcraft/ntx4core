@@ -34,7 +34,7 @@ import net.minecraftforge.internal.BrandingControl;
 public class TitleScreenMixin extends Screen {
     @Shadow
     @Final
-    public static Text COPYRIGHT
+    public static final Text COPYRIGHT
         // Mojang, FUCK YOU!
         = new LiteralText("Copyleft Anvilcraft. Licensed under AGPL-3.0+ALEC");
 
