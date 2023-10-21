@@ -1,0 +1,14 @@
+{
+    "type": "psi:dimension_trick_crafting",
+    "input": {
+        "item": "ntx4core:corrupted_essence"
+    },
+    "output": {
+        "item": "ntx4core:strange_construct"
+    },
+    "cad": {
+        "item": "psi:cad_assembly_ebony_psimetal"
+    },
+    "trick": "psi:trick_ebony_ivory",
+    "dimension": "ntx4core:mirror"
+}

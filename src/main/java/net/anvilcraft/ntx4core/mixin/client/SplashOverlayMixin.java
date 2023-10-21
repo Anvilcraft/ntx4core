@@ -14,6 +14,7 @@ import com.mojang.blaze3d.platform.GlDebugInfo;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 
+import net.anvilcraft.ntx4core.AlecManager;
 import net.anvilcraft.ntx4core.Ntx4Core;
 import net.anvilcraft.ntx4core.Ntx4CoreShaders;
 import net.minecraft.client.MinecraftClient;
@@ -31,13 +32,17 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.ColorHelper.Argb;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Matrix4f;
+import net.minecraft.util.math.Vec3f;
 import net.minecraftforge.client.loading.ClientModLoader;
 
 @Mixin(SplashOverlay.class)
 public class SplashOverlayMixin extends Overlay {
     @Unique
-    private static final Identifier LOGO
-        = new Identifier(Ntx4Core.MODID, "textures/gui/title/splash.png");
+    private static final Identifier LOGO = Ntx4Core.id("textures/gui/title/splash.png");
+
+    @Unique
+    private static final Identifier ALEC = Ntx4Core.id("textures/alec.png");
 
     @Shadow
     @Final
@@ -93,7 +98,7 @@ public class SplashOverlayMixin extends Overlay {
         float f2;
         int l1;
         GlStateManager._clearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        GlStateManager._clear(GL31.GL_COLOR_BUFFER_BIT, false);
+        GlStateManager._clear(GL31.GL_COLOR_BUFFER_BIT | GL31.GL_DEPTH_BUFFER_BIT, false);
         if (f >= 1.0F) {
             if (this.client.currentScreen != null) {
                 this.client.currentScreen.render(matrices, 0, 0, delta);
@@ -128,6 +133,67 @@ public class SplashOverlayMixin extends Overlay {
             buf.vertex(-1.0, 1.0, 0.0).next();
             buf.end();
             BufferRenderer.draw(buf);
+
+            if (AlecManager.HAS_ALEC) {
+                float offset_x = (float) Math.sin(this.time / 25.);
+                float offset_y = (float) Math.cos(this.time / 25.);
+
+                var mtx = Matrix4f.viewboxMatrix(45., 1.f, 0.1f, 100.f);
+                mtx.multiply(Matrix4f.translate(offset_x, offset_y, -5.f));
+                mtx.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(this.time * 4.f));
+                // clang-format off
+                mtx.multiply(new Matrix4f(new float[]{
+                    1.f, 0.f, 0.f, 0.f,
+                    0.f, -1.f, 0.f, 0.f,
+                    0.f, 0.f, 1.f, 0.f,
+                    0.f, 0.f, 0.f, 1.f,
+                }));
+                // clang-format on
+
+                RenderSystem.setShader(() -> Ntx4CoreShaders.ALECUBUS);
+                RenderSystem.setShaderTexture(0, ALEC);
+                Ntx4CoreShaders.ALECUBUS.getUniform("Mtx").set(mtx);
+
+                buf.begin(DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
+
+                alecVert(buf, -0.5, -0.5, -0.5, 1.0, 0.0);
+                alecVert(buf, 0.5, -0.5, -0.5, 0.0, 0.0);
+                alecVert(buf, 0.5, 0.5, -0.5, 0.0, 1.0);
+                alecVert(buf, -0.5, 0.5, -0.5, 1.0, 1.0);
+
+                alecVert(buf, -0.5, -0.5, 0.5, 0.0, 0.0);
+                alecVert(buf, 0.5, -0.5, 0.5, 1.0, 0.0);
+                alecVert(buf, 0.5, 0.5, 0.5, 1.0, 1.0);
+                alecVert(buf, -0.5, 0.5, 0.5, 0.0, 1.0);
+
+                alecVert(buf, -0.5, 0.5, 0.5, 1.0, 1.0);
+                alecVert(buf, -0.5, 0.5, -0.5, 0.0, 1.0);
+                alecVert(buf, -0.5, -0.5, -0.5, 0.0, 0.0);
+                alecVert(buf, -0.5, -0.5, 0.5, 1.0, 0.0);
+
+                alecVert(buf, 0.5, 0.5, 0.5, 0.0, 1.0);
+                alecVert(buf, 0.5, 0.5, -0.5, 1.0, 1.0);
+                alecVert(buf, 0.5, -0.5, -0.5, 1.0, 0.0);
+                alecVert(buf, 0.5, -0.5, 0.5, 0.0, 0.0);
+
+                alecVert(buf, -0.5, -0.5, -0.5, 0.0, 1.0);
+                alecVert(buf, 0.5, -0.5, -0.5, 1.0, 1.0);
+                alecVert(buf, 0.5, -0.5, 0.5, 1.0, 0.0);
+                alecVert(buf, -0.5, -0.5, 0.5, 0.0, 0.0);
+
+                alecVert(buf, -0.5, 0.5, -0.5, 0.0, 1.0);
+                alecVert(buf, 0.5, 0.5, -0.5, 1.0, 1.0);
+                alecVert(buf, 0.5, 0.5, 0.5, 1.0, 0.0);
+                alecVert(buf, -0.5, 0.5, 0.5, 0.0, 0.0);
+
+                buf.end();
+
+                GlStateManager._enableDepthTest();
+                GlStateManager._disableCull();
+                BufferRenderer.draw(buf);
+                GlStateManager._disableDepthTest();
+                GlStateManager._enableCull();
+            }
         }
 
         l1 = (int) ((double) this.client.getWindow().getScaledWidth() * 0.5D);
@@ -199,6 +265,11 @@ public class SplashOverlayMixin extends Overlay {
                 );
             }
         }
+    }
+
+    private void
+    alecVert(BufferBuilder buf, double x, double y, double z, double u, double v) {
+        buf.vertex((float) x, (float) y, (float) z).texture((float) u, (float) v).next();
     }
 
     private void renderProgressBar(

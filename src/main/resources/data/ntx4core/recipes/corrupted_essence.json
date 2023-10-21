@@ -1,0 +1,17 @@
+{
+    "type": "assemblylinemachines:bath",
+    "input_a": {
+        "item": "ntx4core:irradiated_essence"
+    },
+    "input_b": {
+        "item": "assemblylinemachines:strange_matter"
+    },
+    "output": {
+        "item": "ntx4core:corrupted_essence"
+    },
+    "stirs": 32,
+    "fluid": "condensed_void",
+    "mix_color": 0,
+    "mixer_type": "MIXER_ONLY",
+    "drain_percent": "QUARTER"
+}

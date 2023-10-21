@@ -1,0 +1,19 @@
+{
+    "type": "pneumaticcraft:pressure_chamber",
+    "inputs": [
+        {
+            "item": "ntx4core:sentient_singularity"
+        },
+        {
+            "type": "pneumaticcraft:stacked_item",
+            "tag": "forge:plates/novasteel",
+            "count": 4
+        }
+    ],
+    "pressure": 4.5,
+    "results": [
+        {
+            "item": "ntx4core:stabilized_sentience"
+        }
+    ]
+}

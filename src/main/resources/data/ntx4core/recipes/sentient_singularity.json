@@ -1,0 +1,18 @@
+{
+    "type": "powah:energizing",
+    "ingredients": [
+        {
+            "item": "ntx4core:magical_core"
+        },
+        {
+            "item": "ae2:singularity"
+        },
+        {
+            "item": "powah:ender_core"
+        }
+    ],
+    "energy": 100000000,
+    "result": {
+        "item": "ntx4core:sentient_singularity"
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "nuclearscience:radioactive_processor_recipe",
+    "iteminputs": {
+        "count": 1,
+        "0": {
+            "item": "ntx4core:magically_stabilized_sentience",
+            "count": 1
+        }
+    },
+    "fluidinputs": {
+        "count": 1,
+        "0": {
+            "fluid": "bigreactors:redfrigium",
+            "amount": 5000
+        }
+    },
+    "output": {
+        "item": "ntx4core:irradiated_essence",
+        "count": 1
+    }
+}

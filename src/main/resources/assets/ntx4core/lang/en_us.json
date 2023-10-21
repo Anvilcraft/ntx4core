@@ -1,0 +1,17 @@
+{
+    "itemGroup.ntx4core": "Notex 4",
+
+    "block.ntx4core.alec": "Alec",
+
+    "item.ntx4core.computational_core": "Computational Core",
+    "item.ntx4core.energy_infused_core": "Energy-Infused Core",
+    "item.ntx4core.magical_core": "Magical Core",
+    "item.ntx4core.sentient_singularity": "Sentient Singularity",
+    "item.ntx4core.stabilized_sentience": "Stabilized Sentience",
+    "item.ntx4core.magically_stabilized_sentience": "Magically Stabilized Sentience",
+    "item.ntx4core.irradiated_essence": "Irradiated Essence",
+    "item.ntx4core.corrupted_essence": "Corrupted Essence",
+    "item.ntx4core.strange_construct": "Strange Construct",
+    "item.ntx4core.awakened_construct": "Awakened Construct",
+    "item.ntx4core.chaotic_construct": "Chaotic Construct"
+}

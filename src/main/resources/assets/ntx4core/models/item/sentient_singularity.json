@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "ntx4core:item/sentient_singularity"
+    }
+}

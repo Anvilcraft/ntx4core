@@ -1,0 +1,13 @@
+{
+    "type": "bloodmagic:altar",
+    "input": {
+        "item": "ntx4core:strange_construct"
+    },
+    "output": {
+        "item": "ntx4core:awakened_construct"
+    },
+    "upgradeLevel": 4,
+    "altarSyphon": 80000,
+    "consumptionRate": 1000,
+    "drainRate": 2000
+}

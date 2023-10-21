@@ -35,7 +35,7 @@ public class InputReplacements {
 
         var philosopherStoneMapper = new InputReplaceRecipeMapper().replace(
             "#forge:gems/diamond",
-            "#forge:darkmatter"
+            "#ntx4core:darkmatter"
         );
         ev.mapRecipeID(
             new Identifier("projecte", "philosophers_stone"), philosopherStoneMapper

@@ -1,0 +1,13 @@
+{
+    "type": "botania:elven_trade",
+    "ingredients": [
+        {
+            "item": "ntx4core:stabilized_sentience"
+        }
+    ],
+    "output": [
+        {
+            "item": "ntx4core:magically_stabilized_sentience"
+        }
+    ]
+}

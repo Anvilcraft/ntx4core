@@ -1,0 +1,7 @@
+{
+    "type": "mna:arcane-furnace",
+    "tier": 5,
+    "input": "ntx4core:energy_infused_core",
+    "output": "ntx4core:magical_core",
+    "burnTime": 200
+}
