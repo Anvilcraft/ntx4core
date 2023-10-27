@@ -17,7 +17,11 @@ loom {
     }
 }
 
-repositories {}
+repositories {
+    maven {
+        url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+    }
+}
 
 dependencies {
     // to change the versions see the gradle.properties file
@@ -25,6 +29,8 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 
     forge "net.minecraftforge:forge:${project.forge_version}"
+
+    modImplementation "software.bernie.geckolib:geckolib-forge-1.18:3.0.57"
 }
 
 processResources {

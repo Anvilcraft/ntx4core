@@ -8,6 +8,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import software.bernie.geckolib3.GeckoLib;
 
 @Mod("ntx4core")
 public class Ntx4Core {
@@ -19,6 +20,8 @@ public class Ntx4Core {
 
         Ntx4CoreBlocks.BLOCKS.register(bus);
         Ntx4CoreItems.ITEMS.register(bus);
+
+        GeckoLib.initialize();
 
         MinecraftForge.EVENT_BUS.register(Ntx4CoreShaders.class);
     }
