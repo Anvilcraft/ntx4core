@@ -4,7 +4,6 @@ import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 
 public interface ICosmetic {
-    
     Identifier getAnimationFileLocation();
 
     Identifier getModelLocation();
@@ -40,7 +39,6 @@ public interface ICosmetic {
     default boolean readyToRender() {
         return true;
     }
-    
-    Identifier getID();
 
+    Identifier getID();
 }

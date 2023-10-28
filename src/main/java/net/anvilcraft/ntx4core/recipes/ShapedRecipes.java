@@ -27,6 +27,5 @@ public class ShapedRecipes {
                               .ingredient('C', "mekanism:teleportation_core")
                               .ingredient('E', "mekanism:energy_tablet")
                               .build());
-
     }
 }

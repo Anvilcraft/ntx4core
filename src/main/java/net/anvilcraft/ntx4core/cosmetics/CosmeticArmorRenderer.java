@@ -38,231 +38,305 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public class CosmeticArmorRenderer extends BipedEntityModel
-		implements IGeoRenderer<CosmeticItem>, ModelFetcher<CosmeticItem> {
+    implements IGeoRenderer<CosmeticItem>, ModelFetcher<CosmeticItem> {
+    protected CosmeticItem currentArmorItem;
+    protected LivingEntity entityLiving;
+    protected float widthScale = 1;
+    protected float heightScale = 1;
+    protected Matrix4f dispatchedMat = new Matrix4f();
+    protected Matrix4f renderEarlyMat = new Matrix4f();
 
-	protected CosmeticItem currentArmorItem;
-	protected LivingEntity entityLiving;
-	protected float widthScale = 1;
-	protected float heightScale = 1;
-	protected Matrix4f dispatchedMat = new Matrix4f();
-	protected Matrix4f renderEarlyMat = new Matrix4f();
+    public String headBone = null;
+    public String bodyBone = null;
+    public String rightArmBone = null;
+    public String leftArmBone = null;
+    public String rightLegBone = null;
+    public String leftLegBone = null;
 
-	public String headBone = null;
-	public String bodyBone = null;
-	public String rightArmBone = null;
-	public String leftArmBone = null;
-	public String rightLegBone = null;
-	public String leftLegBone = null;
+    private final AnimatedGeoModel<CosmeticItem> modelProvider;
 
-	private final AnimatedGeoModel<CosmeticItem> modelProvider;
+    protected VertexConsumerProvider rtb = null;
 
-	protected VertexConsumerProvider rtb = null;
+    private IRenderCycle currentModelRenderCycle = EModelRenderCycle.INITIAL;
 
-	private IRenderCycle currentModelRenderCycle = EModelRenderCycle.INITIAL;
+    { AnimationController.addModelFetcher(this); }
 
-	{
-		AnimationController.addModelFetcher(this);
-	}
+    @Override
+    @Nullable
+    public IAnimatableModel<CosmeticItem> apply(IAnimatable t) {
+        if (t instanceof CosmeticItem)
+            return this.getGeoModelProvider();
+        return null;
+    }
 
-	@Override
-	@Nullable
-	public IAnimatableModel<CosmeticItem> apply(IAnimatable t) {
-		if (t instanceof CosmeticItem) return this.getGeoModelProvider();
-		return null;
-	}
+    public CosmeticArmorRenderer() {
+        super(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(
+            EntityModelLayers.PLAYER_INNER_ARMOR
+        ));
 
-	public CosmeticArmorRenderer() {
-		super(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(EntityModelLayers.PLAYER_INNER_ARMOR));
+        this.modelProvider = new CosmeticModel();
+    }
 
-		this.modelProvider = new CosmeticModel();
-	}
+    @Override
+    public void render(
+        MatrixStack poseStack,
+        VertexConsumer buffer,
+        int packedLight,
+        int packedOverlay,
+        float red,
+        float green,
+        float blue,
+        float alpha
+    ) {
+        this.render(0, poseStack, buffer, packedLight);
+    }
 
-	@Override
-	public void render(MatrixStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay,
-			float red, float green, float blue, float alpha) {
-		this.render(0, poseStack, buffer, packedLight);
-	}
+    public void render(
+        float partialTick, MatrixStack poseStack, VertexConsumer buffer, int packedLight
+    ) {
+        GeoModel model = this.modelProvider.getModel(
+            this.modelProvider.getModelLocation(this.currentArmorItem)
+        );
+        AnimationEvent animationEvent = new AnimationEvent(
+            this.currentArmorItem,
+            0,
+            0,
+            MinecraftClient.getInstance().getTickDelta(),
+            false, // can also be getLastFrameDuration()
+            Arrays.asList(this.entityLiving)
+        );
 
-	public void render(float partialTick, MatrixStack poseStack, VertexConsumer buffer, int packedLight) {
-		GeoModel model = this.modelProvider.getModel(this.modelProvider.getModelLocation(this.currentArmorItem));
-		AnimationEvent animationEvent = new AnimationEvent(this.currentArmorItem, 0, 0,
-				MinecraftClient.getInstance().getTickDelta(), false, // can also be getLastFrameDuration()
-				Arrays.asList(this.entityLiving));
+        poseStack.push();
+        poseStack.translate(0, 24 / 16F, 0);
+        poseStack.scale(-1, -1, 1);
 
-		poseStack.push();
-		poseStack.translate(0, 24 / 16F, 0);
-		poseStack.scale(-1, -1, 1);
-
-		//this.dispatchedMat = poseStack.last().pose().copy();
+        //this.dispatchedMat = poseStack.last().pose().copy();
         this.dispatchedMat = poseStack.peek().getPositionMatrix().copy();
 
-		this.modelProvider.setLivingAnimations(this.currentArmorItem, getInstanceId(this.currentArmorItem), animationEvent);
-		setCurrentModelRenderCycle(EModelRenderCycle.INITIAL);
-		fitToBiped();
-		RenderSystem.setShaderTexture(0, getTextureLocation(this.currentArmorItem));
+        this.modelProvider.setLivingAnimations(
+            this.currentArmorItem, getInstanceId(this.currentArmorItem), animationEvent
+        );
+        setCurrentModelRenderCycle(EModelRenderCycle.INITIAL);
+        fitToBiped();
+        RenderSystem.setShaderTexture(0, getTextureLocation(this.currentArmorItem));
 
-		Color renderColor = getRenderColor(this.currentArmorItem, partialTick, poseStack, null, buffer, packedLight);
-		RenderLayer renderType = getRenderType(this.currentArmorItem, partialTick, poseStack, null, buffer, packedLight,
-				getTextureLocation(this.currentArmorItem));
+        Color renderColor = getRenderColor(
+            this.currentArmorItem, partialTick, poseStack, null, buffer, packedLight
+        );
+        RenderLayer renderType = getRenderType(
+            this.currentArmorItem,
+            partialTick,
+            poseStack,
+            null,
+            buffer,
+            packedLight,
+            getTextureLocation(this.currentArmorItem)
+        );
 
-		render(model, this.currentArmorItem, partialTick, renderType, poseStack, null, buffer, packedLight,
-				OverlayTexture.DEFAULT_UV, renderColor.getRed() / 255f, renderColor.getGreen() / 255f,
-				renderColor.getBlue() / 255f, renderColor.getAlpha() / 255f);
+        render(
+            model,
+            this.currentArmorItem,
+            partialTick,
+            renderType,
+            poseStack,
+            null,
+            buffer,
+            packedLight,
+            OverlayTexture.DEFAULT_UV,
+            renderColor.getRed() / 255f,
+            renderColor.getGreen() / 255f,
+            renderColor.getBlue() / 255f,
+            renderColor.getAlpha() / 255f
+        );
 
-		if (ModList.get().isLoaded("patchouli"))
-			PatchouliCompat.patchouliLoaded(poseStack);
+        if (ModList.get().isLoaded("patchouli"))
+            PatchouliCompat.patchouliLoaded(poseStack);
 
-		poseStack.pop();
-	}
+        poseStack.pop();
+    }
 
-	@Override
-	public void renderEarly(CosmeticItem animatable, MatrixStack poseStack, float partialTick, VertexConsumerProvider bufferSource,
-							VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue,
-							float alpha) {
-		//this.renderEarlyMat = poseStack.last().pose().copy();
+    @Override
+    public void renderEarly(
+        CosmeticItem animatable,
+        MatrixStack poseStack,
+        float partialTick,
+        VertexConsumerProvider bufferSource,
+        VertexConsumer buffer,
+        int packedLight,
+        int packedOverlay,
+        float red,
+        float green,
+        float blue,
+        float alpha
+    ) {
+        //this.renderEarlyMat = poseStack.last().pose().copy();
         this.renderEarlyMat = poseStack.peek().getPositionMatrix().copy();
-		this.currentArmorItem = animatable;
+        this.currentArmorItem = animatable;
 
-		IGeoRenderer.super.renderEarly(animatable, poseStack, partialTick, bufferSource, buffer,
-				packedLight, packedOverlay, red, green, blue, alpha);
-	}
+        IGeoRenderer.super.renderEarly(
+            animatable,
+            poseStack,
+            partialTick,
+            bufferSource,
+            buffer,
+            packedLight,
+            packedOverlay,
+            red,
+            green,
+            blue,
+            alpha
+        );
+    }
 
-	@Override
-	public void renderRecursively(GeoBone bone, MatrixStack poseStack, VertexConsumer buffer, int packedLight,
-			int packedOverlay, float red, float green, float blue, float alpha) {
-		if (bone.isTrackingXform()) {
-			//Matrix4f poseState = poseStack.last().pose();
+    @Override
+    public void renderRecursively(
+        GeoBone bone,
+        MatrixStack poseStack,
+        VertexConsumer buffer,
+        int packedLight,
+        int packedOverlay,
+        float red,
+        float green,
+        float blue,
+        float alpha
+    ) {
+        if (bone.isTrackingXform()) {
+            //Matrix4f poseState = poseStack.last().pose();
             Matrix4f poseState = poseStack.peek().getPositionMatrix();
-			Vec3d renderOffset = getRenderOffset(this.currentArmorItem, 1);
-			Matrix4f localMatrix = RenderUtils.invertAndMultiplyMatrices(poseState, this.dispatchedMat);
+            Vec3d renderOffset = getRenderOffset(this.currentArmorItem, 1);
+            Matrix4f localMatrix
+                = RenderUtils.invertAndMultiplyMatrices(poseState, this.dispatchedMat);
 
-			bone.setModelSpaceXform(RenderUtils.invertAndMultiplyMatrices(poseState, this.renderEarlyMat));
-			//localMatrix.translate(new Vec3f(renderOffset));
+            bone.setModelSpaceXform(
+                RenderUtils.invertAndMultiplyMatrices(poseState, this.renderEarlyMat)
+            );
+            //localMatrix.translate(new Vec3f(renderOffset));
             localMatrix.addToLastColumn(new Vec3f(renderOffset));
-			bone.setLocalSpaceXform(localMatrix);
-		}
+            bone.setLocalSpaceXform(localMatrix);
+        }
 
-		IGeoRenderer.super.renderRecursively(bone, poseStack, buffer, packedLight, packedOverlay, red, green, blue,
-				alpha);
-	}
+        IGeoRenderer.super.renderRecursively(
+            bone, poseStack, buffer, packedLight, packedOverlay, red, green, blue, alpha
+        );
+    }
 
-	public Vec3d getRenderOffset(CosmeticItem entity, float partialTick) {
-		return Vec3d.ZERO;
-	}
+    public Vec3d getRenderOffset(CosmeticItem entity, float partialTick) {
+        return Vec3d.ZERO;
+    }
 
-	protected void fitToBiped() {
-		if (this.headBone != null) {
-			IBone headBone = this.modelProvider.getBone(this.headBone);
+    protected void fitToBiped() {
+        if (this.headBone != null) {
+            IBone headBone = this.modelProvider.getBone(this.headBone);
 
-			GeoUtils.copyRotations(this.head, headBone);
-			headBone.setPositionX(this.head.pivotX);
-			headBone.setPositionY(-this.head.pivotY);
-			headBone.setPositionZ(this.head.pivotZ);
-		}
+            GeoUtils.copyRotations(this.head, headBone);
+            headBone.setPositionX(this.head.pivotX);
+            headBone.setPositionY(-this.head.pivotY);
+            headBone.setPositionZ(this.head.pivotZ);
+        }
 
-		if (this.bodyBone != null) {
-			IBone bodyBone = this.modelProvider.getBone(this.bodyBone);
+        if (this.bodyBone != null) {
+            IBone bodyBone = this.modelProvider.getBone(this.bodyBone);
 
-			GeoUtils.copyRotations(this.body, bodyBone);
-			bodyBone.setPositionX(this.body.pivotX);
-			bodyBone.setPositionY(-this.body.pivotY);
-			bodyBone.setPositionZ(this.body.pivotZ);
-		}
+            GeoUtils.copyRotations(this.body, bodyBone);
+            bodyBone.setPositionX(this.body.pivotX);
+            bodyBone.setPositionY(-this.body.pivotY);
+            bodyBone.setPositionZ(this.body.pivotZ);
+        }
 
-		if (this.rightArmBone != null) {
-			IBone rightArmBone = this.modelProvider.getBone(this.rightArmBone);
+        if (this.rightArmBone != null) {
+            IBone rightArmBone = this.modelProvider.getBone(this.rightArmBone);
 
-			GeoUtils.copyRotations(this.rightArm, rightArmBone);
-			rightArmBone.setPositionX(this.rightArm.pivotX + 5);
-			rightArmBone.setPositionY(2 - this.rightArm.pivotY);
-			rightArmBone.setPositionZ(this.rightArm.pivotZ);
-		}
+            GeoUtils.copyRotations(this.rightArm, rightArmBone);
+            rightArmBone.setPositionX(this.rightArm.pivotX + 5);
+            rightArmBone.setPositionY(2 - this.rightArm.pivotY);
+            rightArmBone.setPositionZ(this.rightArm.pivotZ);
+        }
 
-		if (this.leftArmBone != null) {
-			IBone leftArmBone = this.modelProvider.getBone(this.leftArmBone);
+        if (this.leftArmBone != null) {
+            IBone leftArmBone = this.modelProvider.getBone(this.leftArmBone);
 
-			GeoUtils.copyRotations(this.leftArm, leftArmBone);
-			leftArmBone.setPositionX(this.leftArm.pivotX - 5);
-			leftArmBone.setPositionY(2 - this.leftArm.pivotY);
-			leftArmBone.setPositionZ(this.leftArm.pivotZ);
-		}
+            GeoUtils.copyRotations(this.leftArm, leftArmBone);
+            leftArmBone.setPositionX(this.leftArm.pivotX - 5);
+            leftArmBone.setPositionY(2 - this.leftArm.pivotY);
+            leftArmBone.setPositionZ(this.leftArm.pivotZ);
+        }
 
-		if (this.rightLegBone != null) {
-			IBone rightLegBone = this.modelProvider.getBone(this.rightLegBone);
+        if (this.rightLegBone != null) {
+            IBone rightLegBone = this.modelProvider.getBone(this.rightLegBone);
 
-			GeoUtils.copyRotations(this.rightLeg, rightLegBone);
-			rightLegBone.setPositionX(this.rightLeg.pivotX + 2);
-			rightLegBone.setPositionY(12 - this.rightLeg.pivotY);
-			rightLegBone.setPositionZ(this.rightLeg.pivotZ);
-		}
+            GeoUtils.copyRotations(this.rightLeg, rightLegBone);
+            rightLegBone.setPositionX(this.rightLeg.pivotX + 2);
+            rightLegBone.setPositionY(12 - this.rightLeg.pivotY);
+            rightLegBone.setPositionZ(this.rightLeg.pivotZ);
+        }
 
-		if (this.leftLegBone != null) {
-			IBone leftLegBone = this.modelProvider.getBone(this.leftLegBone);
+        if (this.leftLegBone != null) {
+            IBone leftLegBone = this.modelProvider.getBone(this.leftLegBone);
 
-			GeoUtils.copyRotations(this.leftLeg, leftLegBone);
-			leftLegBone.setPositionX(this.leftLeg.pivotX - 2);
-			leftLegBone.setPositionY(12 - this.leftLeg.pivotY);
-			leftLegBone.setPositionZ(this.leftLeg.pivotZ);
-		}
-	}
+            GeoUtils.copyRotations(this.leftLeg, leftLegBone);
+            leftLegBone.setPositionX(this.leftLeg.pivotX - 2);
+            leftLegBone.setPositionY(12 - this.leftLeg.pivotY);
+            leftLegBone.setPositionZ(this.leftLeg.pivotZ);
+        }
+    }
 
-	@Override
-	public AnimatedGeoModel<CosmeticItem> getGeoModelProvider() {
-		return this.modelProvider;
-	}
+    @Override
+    public AnimatedGeoModel<CosmeticItem> getGeoModelProvider() {
+        return this.modelProvider;
+    }
 
-	@AvailableSince(value = "3.1.24")
-	@Override
-	@Nonnull
-	public IRenderCycle getCurrentModelRenderCycle() {
-		return this.currentModelRenderCycle;
-	}
+    @AvailableSince(value = "3.1.24")
+    @Override
+    @Nonnull
+    public IRenderCycle getCurrentModelRenderCycle() {
+        return this.currentModelRenderCycle;
+    }
 
-	@AvailableSince(value = "3.1.24")
-	@Override
-	public void setCurrentModelRenderCycle(IRenderCycle currentModelRenderCycle) {
-		this.currentModelRenderCycle = currentModelRenderCycle;
-	}
+    @AvailableSince(value = "3.1.24")
+    @Override
+    public void setCurrentModelRenderCycle(IRenderCycle currentModelRenderCycle) {
+        this.currentModelRenderCycle = currentModelRenderCycle;
+    }
 
-	@AvailableSince(value = "3.1.24")
-	@Override
-	public float getWidthScale(CosmeticItem animatable) {
-		return this.widthScale;
-	}
+    @AvailableSince(value = "3.1.24")
+    @Override
+    public float getWidthScale(CosmeticItem animatable) {
+        return this.widthScale;
+    }
 
-	@AvailableSince(value = "3.1.24")
-	@Override
-	public float getHeightScale(CosmeticItem entity) {
-		return this.heightScale;
-	}
+    @AvailableSince(value = "3.1.24")
+    @Override
+    public float getHeightScale(CosmeticItem entity) {
+        return this.heightScale;
+    }
 
-	@Override
-	public Identifier getTextureLocation(CosmeticItem animatable) {
-		return this.modelProvider.getTextureLocation(animatable);
-	}
+    @Override
+    public Identifier getTextureLocation(CosmeticItem animatable) {
+        return this.modelProvider.getTextureLocation(animatable);
+    }
 
-	/**
-	 * Everything after this point needs to be called every frame before rendering
-	 */
-	public CosmeticArmorRenderer setCurrentItem(LivingEntity entity, CosmeticItem item) {
-		this.entityLiving = entity;
-		this.currentArmorItem = item;
+    /**
+     * Everything after this point needs to be called every frame before rendering
+     */
+    public CosmeticArmorRenderer setCurrentItem(LivingEntity entity, CosmeticItem item) {
+        this.entityLiving = entity;
+        this.currentArmorItem = item;
 
-		return this;
-	}
+        return this;
+    }
 
-	public final CosmeticArmorRenderer applyEntityStats(BipedEntityModel defaultArmor) {
-		this.child = defaultArmor.child;
-		this.sneaking = defaultArmor.sneaking;
-		this.riding = defaultArmor.riding;
-		this.rightArmPose = defaultArmor.rightArmPose;
-		this.leftArmPose = defaultArmor.leftArmPose;
+    public final CosmeticArmorRenderer applyEntityStats(BipedEntityModel defaultArmor) {
+        this.child = defaultArmor.child;
+        this.sneaking = defaultArmor.sneaking;
+        this.riding = defaultArmor.riding;
+        this.rightArmPose = defaultArmor.rightArmPose;
+        this.leftArmPose = defaultArmor.leftArmPose;
 
-		return this;
-	}
+        return this;
+    }
 
-	public void filterBones(){
-		this.headBone = getCurrentCosmetic().getHead();
+    public void filterBones() {
+        this.headBone = getCurrentCosmetic().getHead();
         this.bodyBone = getCurrentCosmetic().getBody();
         this.leftArmBone = getCurrentCosmetic().getLeftArm();
         this.rightArmBone = getCurrentCosmetic().getRightArm();
@@ -273,61 +347,69 @@ public class CosmeticArmorRenderer extends BipedEntityModel
 
         this.setBoneVisibility(this.headBone, getCurrentCosmetic().getHead() != null);
         this.setBoneVisibility(this.bodyBone, getCurrentCosmetic().getBody() != null);
-        this.setBoneVisibility(this.leftArmBone, getCurrentCosmetic().getLeftArm() != null);
-        this.setBoneVisibility(this.rightArmBone, getCurrentCosmetic().getRightArm() != null);
-        this.setBoneVisibility(this.leftLegBone, getCurrentCosmetic().getLeftLeg() != null);
-        this.setBoneVisibility(this.rightLegBone, getCurrentCosmetic().getRightLeg() != null);
-
+        this.setBoneVisibility(
+            this.leftArmBone, getCurrentCosmetic().getLeftArm() != null
+        );
+        this.setBoneVisibility(
+            this.rightArmBone, getCurrentCosmetic().getRightArm() != null
+        );
+        this.setBoneVisibility(
+            this.leftLegBone, getCurrentCosmetic().getLeftLeg() != null
+        );
+        this.setBoneVisibility(
+            this.rightLegBone, getCurrentCosmetic().getRightLeg() != null
+        );
     }
 
-	/**
-	 * Sets a specific bone (and its child-bones) to visible or not
-	 * @param boneName The name of the bone
-	 * @param isVisible Whether the bone should be visible
-	 */
-	protected void setBoneVisibility(String boneName, boolean isVisible) {
-		if (boneName == null)
-			return;
+    /**
+     * Sets a specific bone (and its child-bones) to visible or not
+     * @param boneName The name of the bone
+     * @param isVisible Whether the bone should be visible
+     */
+    protected void setBoneVisibility(String boneName, boolean isVisible) {
+        if (boneName == null)
+            return;
 
-		this.modelProvider.getBone(boneName).setHidden(!isVisible);
-	}
+        this.modelProvider.getBone(boneName).setHidden(!isVisible);
+    }
 
-	/**
-	 * Use {@link CosmeticArmorRenderer#setBoneVisibility(String, boolean)}
-	 */
-	@Deprecated(forRemoval = true)
-	protected IBone getAndHideBone(String boneName) {
-		setBoneVisibility(boneName, false);
+    /**
+     * Use {@link CosmeticArmorRenderer#setBoneVisibility(String, boolean)}
+     */
+    @Deprecated(forRemoval = true)
+    protected IBone getAndHideBone(String boneName) {
+        setBoneVisibility(boneName, false);
 
-		return this.modelProvider.getBone(boneName);
-	}
+        return this.modelProvider.getBone(boneName);
+    }
 
-	/**
-	 * Use {@link IGeoRenderer#getInstanceId(Object)}<br>
-	 * Remove in 1.20+
-	 */
-	@Deprecated(forRemoval = true)
-	public Integer getUniqueID(CosmeticItem animatable) {
-		return getInstanceId(animatable);
-	}
+    /**
+     * Use {@link IGeoRenderer#getInstanceId(Object)}<br>
+     * Remove in 1.20+
+     */
+    @Deprecated(forRemoval = true)
+    public Integer getUniqueID(CosmeticItem animatable) {
+        return getInstanceId(animatable);
+    }
 
-	@Override
-	public int getInstanceId(CosmeticItem animatable) {
-		return Objects.hash(this.currentArmorItem.getCosmetic().getID(), this.entityLiving.getUuid());
-	}
+    @Override
+    public int getInstanceId(CosmeticItem animatable) {
+        return Objects.hash(
+            this.currentArmorItem.getCosmetic().getID(), this.entityLiving.getUuid()
+        );
+    }
 
-	@Override
-	public void setCurrentRTB(VertexConsumerProvider bufferSource) {
-		this.rtb = bufferSource;
-	}
+    @Override
+    public void setCurrentRTB(VertexConsumerProvider bufferSource) {
+        this.rtb = bufferSource;
+    }
 
-	@Override
-	public VertexConsumerProvider getCurrentRTB() {
-		return this.rtb;
-	}
+    @Override
+    public VertexConsumerProvider getCurrentRTB() {
+        return this.rtb;
+    }
 
-	public ICosmetic getCurrentCosmetic() {
-		return this.currentArmorItem.getCosmetic();
-	}
+    public ICosmetic getCurrentCosmetic() {
+        return this.currentArmorItem.getCosmetic();
+    }
 }
-

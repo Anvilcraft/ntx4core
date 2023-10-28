@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.UUID;
 
 public class CosmeticsManager {
-    
     private static List<ICosmeticProvider> providers = new ArrayList<>();
     private static Map<UUID, List<ICosmetic>> cosmeticCache = new HashMap<>();
     private static Set<UUID> activePlayers = new HashSet<>();
@@ -19,7 +18,8 @@ public class CosmeticsManager {
         for (ICosmeticProvider provider : providers) {
             doRefresh = doRefresh || provider.requestsRefresh();
         }
-        if (!doRefresh) return;
+        if (!doRefresh)
+            return;
         cosmeticCache.clear();
         for (UUID uuid : activePlayers) {
             loadPlayer(uuid);
@@ -27,7 +27,8 @@ public class CosmeticsManager {
     }
 
     private static void loadPlayer(UUID player) {
-        if (cosmeticCache.containsKey(player)) return;
+        if (cosmeticCache.containsKey(player))
+            return;
         cosmeticCache.put(player, new ArrayList<>());
         List<ICosmetic> cosmetics = cosmeticCache.get(player);
         for (ICosmeticProvider provider : providers) {
@@ -47,5 +48,4 @@ public class CosmeticsManager {
         refresh();
         return cosmeticCache.get(uuid);
     }
-
 }

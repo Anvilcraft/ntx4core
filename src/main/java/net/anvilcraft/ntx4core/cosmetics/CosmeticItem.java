@@ -10,7 +10,6 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class CosmeticItem implements IAnimatable {
-
     private ICosmetic cosmetic = null;
     private AnimationBuilder animationBuilder = new AnimationBuilder();
 
@@ -27,11 +26,13 @@ public class CosmeticItem implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<>(this, "controller", 20, this::predicate));
+        data.addAnimationController(
+            new AnimationController<>(this, "controller", 20, this::predicate)
+        );
     }
 
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
-    
+
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
@@ -40,5 +41,4 @@ public class CosmeticItem implements IAnimatable {
     public ICosmetic getCosmetic() {
         return this.cosmetic;
     }
-
 }

@@ -15,8 +15,10 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class CosmeticFeatureRenderer extends ArmorFeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>, BipedEntityModel<AbstractClientPlayerEntity>> {
-
+public class CosmeticFeatureRenderer extends ArmorFeatureRenderer<
+    AbstractClientPlayerEntity,
+    PlayerEntityModel<AbstractClientPlayerEntity>,
+    BipedEntityModel<AbstractClientPlayerEntity>> {
     private static final Map<ICosmetic, CosmeticItem> modelCache = new HashMap<>();
     private static CosmeticArmorRenderer cosmeticRenderer = null;
     PlayerEntityRenderer renderer;
@@ -29,24 +31,50 @@ public class CosmeticFeatureRenderer extends ArmorFeatureRenderer<AbstractClient
     }
 
     @Override
-    public void render(MatrixStack matrix, VertexConsumerProvider buffer, int light, AbstractClientPlayerEntity player, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-       for (ICosmetic c : CosmeticsManager.getCosmeticsForPlayer(player.getUuid())) {
-        if (c.readyToRender()) this.renderCosmetic(matrix, buffer, player, light, c, partialTicks);
-       }
+    public void render(
+        MatrixStack matrix,
+        VertexConsumerProvider buffer,
+        int light,
+        AbstractClientPlayerEntity player,
+        float limbSwing,
+        float limbSwingAmount,
+        float partialTicks,
+        float ageInTicks,
+        float netHeadYaw,
+        float headPitch
+    ) {
+        for (ICosmetic c : CosmeticsManager.getCosmeticsForPlayer(player.getUuid())) {
+            if (c.readyToRender())
+                this.renderCosmetic(matrix, buffer, player, light, c, partialTicks);
+        }
     }
 
-    private void renderCosmetic(MatrixStack matrix, VertexConsumerProvider buffer, AbstractClientPlayerEntity player, int light, ICosmetic cosmetic, float partialTicks) {
-        if (cosmeticRenderer == null) cosmeticRenderer = new CosmeticArmorRenderer();
-        if (!modelCache.containsKey(cosmetic)) modelCache.put(cosmetic, new CosmeticItem(cosmetic));
+    private void renderCosmetic(
+        MatrixStack matrix,
+        VertexConsumerProvider buffer,
+        AbstractClientPlayerEntity player,
+        int light,
+        ICosmetic cosmetic,
+        float partialTicks
+    ) {
+        if (cosmeticRenderer == null)
+            cosmeticRenderer = new CosmeticArmorRenderer();
+        if (!modelCache.containsKey(cosmetic))
+            modelCache.put(cosmetic, new CosmeticItem(cosmetic));
         CosmeticItem item = modelCache.get(cosmetic);
         copyRotations(this.renderer.getModel(), cosmeticRenderer);
         cosmeticRenderer.applyEntityStats(this.renderer.getModel());
         cosmeticRenderer.setCurrentItem(player, item);
         cosmeticRenderer.filterBones();
 
-        VertexConsumer vertex = ItemRenderer.getArmorGlintConsumer(buffer, RenderLayer.getArmorCutoutNoCull(cosmetic.getTextureLocation()), false, false);
+        VertexConsumer vertex = ItemRenderer.getArmorGlintConsumer(
+            buffer,
+            RenderLayer.getArmorCutoutNoCull(cosmetic.getTextureLocation()),
+            false,
+            false
+        );
         cosmeticRenderer.render(partialTicks, matrix, vertex, light);
-    }    
+    }
 
     private static void copyRotations(BipedEntityModel<?> from, BipedEntityModel<?> to) {
         copyRotations(from.head, to.head);
@@ -61,5 +89,4 @@ public class CosmeticFeatureRenderer extends ArmorFeatureRenderer<AbstractClient
     private static void copyRotations(ModelPart from, ModelPart to) {
         to.copyTransform(from);
     }
-
 }

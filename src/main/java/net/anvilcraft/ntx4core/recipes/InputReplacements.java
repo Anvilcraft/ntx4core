@@ -28,14 +28,12 @@ public class InputReplacements {
         ev.mapRecipeID(
             new Identifier("projecte", "relay_mk1"),
             new InputReplaceRecipeMapper().replace(
-                "#forge:storage_blocks/diamond",
-                "mekanism:pellet_antimatter"
+                "#forge:storage_blocks/diamond", "mekanism:pellet_antimatter"
             )
         );
 
         var philosopherStoneMapper = new InputReplaceRecipeMapper().replace(
-            "#forge:gems/diamond",
-            "#ntx4core:darkmatter"
+            "#forge:gems/diamond", "#ntx4core:darkmatter"
         );
         ev.mapRecipeID(
             new Identifier("projecte", "philosophers_stone"), philosopherStoneMapper

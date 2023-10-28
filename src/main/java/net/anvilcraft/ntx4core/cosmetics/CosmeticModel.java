@@ -4,7 +4,6 @@ import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class CosmeticModel extends AnimatedGeoModel<CosmeticItem> {
-
     @Override
     public Identifier getAnimationFileLocation(CosmeticItem animatable) {
         return animatable.getCosmetic().getAnimationFileLocation();
@@ -19,6 +18,4 @@ public class CosmeticModel extends AnimatedGeoModel<CosmeticItem> {
     public Identifier getTextureLocation(CosmeticItem animatable) {
         return animatable.getCosmetic().getTextureLocation();
     }
-
-    
 }

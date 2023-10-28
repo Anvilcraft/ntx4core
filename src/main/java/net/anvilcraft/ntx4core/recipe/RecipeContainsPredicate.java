@@ -16,7 +16,7 @@ public class RecipeContainsPredicate implements Predicate<Recipe<?>> {
     public boolean test(Recipe<?> r) {
         return r.getIngredients() == null
             ? false
-            : r.getIngredients().stream().anyMatch(new StackIngredientCondition(this.item))
-                || r.getOutput().isItemEqual(this.item);
+            : r.getIngredients().stream().anyMatch(new StackIngredientCondition(this.item)
+              ) || r.getOutput().isItemEqual(this.item);
     }
 }
