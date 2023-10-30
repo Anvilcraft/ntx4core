@@ -1,18 +1,22 @@
 package net.anvilcraft.ntx4core.recipes;
 
+import net.anvilcraft.anvillib.Util;
+import net.anvilcraft.anvillib.recipe.InputReplaceRecipeMapper;
+import net.anvilcraft.anvillib.recipe.RecipesEvent;
 import net.anvilcraft.ntx4core.Ntx4Core;
-import net.anvilcraft.ntx4core.Util;
-import net.anvilcraft.ntx4core.recipe.InputReplaceRecipeMapper;
-import net.anvilcraft.ntx4core.recipe.RecipesEvent;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 @EventBusSubscriber(modid = Ntx4Core.MODID, bus = Bus.MOD)
 public class InputReplacements {
     @SubscribeEvent
     public static void onRecipeRegister(RecipesEvent ev) {
+        if (!FMLEnvironment.production)
+            return;
+
         var darkMatter = Util.ingredientFromString("projecte:dark_matter");
 
         ev.mapRecipeID(

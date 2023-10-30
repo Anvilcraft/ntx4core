@@ -1,0 +1,14 @@
+{
+    "structures": [
+        {
+            "weight": 1,
+            "structure": "ntx4core:borg"
+        }
+    ],
+    "placement": {
+        "salt": 28948,
+        "type": "minecraft:random_spread",
+        "spacing": 256,
+        "separation": 128
+    }
+}

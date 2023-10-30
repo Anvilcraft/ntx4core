@@ -12,6 +12,6 @@ public class Ntx4CoreItemGroup extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(Ntx4CoreBlocks.ALEC.get());
+        return new ItemStack(Ntx4CoreBlocks.ALECUBUS.get());
     }
 }

@@ -1,0 +1,16 @@
+{
+    "type": "mekanism:nucleosynthesizing",
+    "itemInput": {
+        "ingredient": {
+            "item": "ntx4core:chaotic_construct"
+        }
+    },
+    "gasInput": {
+        "amount": 10000,
+        "gas": "mekanism:antimatter"
+    },
+    "output": {
+        "item": "ntx4core:alecubus"
+    },
+    "duration": 1250
+}

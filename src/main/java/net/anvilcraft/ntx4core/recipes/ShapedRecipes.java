@@ -1,21 +1,25 @@
 package net.anvilcraft.ntx4core.recipes;
 
+import net.anvilcraft.anvillib.recipe.RecipesEvent;
+import net.anvilcraft.anvillib.recipe.ShapedRecipeBuilder;
 import net.anvilcraft.ntx4core.Ntx4Core;
-import net.anvilcraft.ntx4core.recipe.RecipesEvent;
-import net.anvilcraft.ntx4core.recipe.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 
 @EventBusSubscriber(modid = Ntx4Core.MODID, bus = Bus.MOD)
 public class ShapedRecipes {
     @SubscribeEvent
     public static void onRecipeRegister(RecipesEvent ev) {
+        if (!FMLEnvironment.production)
+            return;
+
         ev.registerRecipe(new ShapedRecipeBuilder(
-                              "he_who_remains_tempad",
+                              Ntx4Core.id("he_who_remains_tempad"),
                               new ItemStack(ForgeRegistries.ITEMS.getValue(
                                   new Identifier("tempad", "he_who_remains_tempad")
                               ))

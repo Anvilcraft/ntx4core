@@ -3,12 +3,13 @@ package net.anvilcraft.ntx4core;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import net.anvilcraft.ntx4core.worldgen.Ntx4CoreFeatures;
+import net.anvilcraft.ntx4core.worldgen.Ntx4CoreStructures;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import software.bernie.geckolib3.GeckoLib;
 
 @Mod("ntx4core")
 public class Ntx4Core {
@@ -20,8 +21,8 @@ public class Ntx4Core {
 
         Ntx4CoreBlocks.BLOCKS.register(bus);
         Ntx4CoreItems.ITEMS.register(bus);
-
-        GeckoLib.initialize();
+        Ntx4CoreFeatures.STRUCTURE_FEATURES.register(bus);
+        Ntx4CoreStructures.CONFIGURED_STRUCTURE_FEATURES.register(bus);
 
         MinecraftForge.EVENT_BUS.register(Ntx4CoreShaders.class);
     }

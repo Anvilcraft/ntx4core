@@ -11,10 +11,10 @@ public class Ntx4CoreItems {
         = DeferredRegister.create(ForgeRegistries.ITEMS, Ntx4Core.MODID);
 
     public static final RegistryObject<Item> ALEC = ITEMS.register(
-        "alec",
+        "alecubus",
         ()
             -> new BlockItem(
-                Ntx4CoreBlocks.ALEC.get(),
+                Ntx4CoreBlocks.ALECUBUS.get(),
                 new Item.Settings().group(Ntx4CoreItemGroup.INSTANCE)
             )
     );
