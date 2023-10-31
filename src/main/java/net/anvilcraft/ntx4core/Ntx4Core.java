@@ -3,6 +3,8 @@ package net.anvilcraft.ntx4core;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import net.anvilcraft.anvillib.cosmetics.CosmeticsManager;
+import net.anvilcraft.ntx4core.cosmetics.StaticCosmeticProvider;
 import net.anvilcraft.ntx4core.worldgen.Ntx4CoreFeatures;
 import net.anvilcraft.ntx4core.worldgen.Ntx4CoreStructures;
 import net.minecraft.util.Identifier;
@@ -25,6 +27,7 @@ public class Ntx4Core {
         Ntx4CoreStructures.CONFIGURED_STRUCTURE_FEATURES.register(bus);
 
         MinecraftForge.EVENT_BUS.register(Ntx4CoreShaders.class);
+        CosmeticsManager.registerProvider(new StaticCosmeticProvider());
     }
 
     public static Identifier id(String s) {
