@@ -1,20 +1,17 @@
 package net.anvilcraft.ntx4core.recipes;
 
+import net.anvilcraft.anvillib.event.Bus;
+import net.anvilcraft.anvillib.event.IEventBusRegisterable;
 import net.anvilcraft.anvillib.recipe.RecipesEvent;
 import net.anvilcraft.anvillib.recipe.ShapedRecipeBuilder;
 import net.anvilcraft.ntx4core.Ntx4Core;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 
-@EventBusSubscriber(modid = Ntx4Core.MODID, bus = Bus.MOD)
-public class ShapedRecipes {
-    @SubscribeEvent
-    public static void onRecipeRegister(RecipesEvent ev) {
+public class ShapedRecipes implements IEventBusRegisterable {
+    public void registerRecipes(RecipesEvent ev) {
         if (!FMLEnvironment.production)
             return;
 
@@ -31,5 +28,10 @@ public class ShapedRecipes {
                               .ingredient('C', "mekanism:teleportation_core")
                               .ingredient('E', "mekanism:energy_tablet")
                               .build());
+    }
+
+    @Override
+    public void registerEventHandlers(Bus bus) {
+        bus.register(RecipesEvent.class, this::registerRecipes);
     }
 }

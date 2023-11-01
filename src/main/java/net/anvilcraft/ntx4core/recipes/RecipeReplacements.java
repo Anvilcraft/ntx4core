@@ -1,18 +1,15 @@
 package net.anvilcraft.ntx4core.recipes;
 
+import net.anvilcraft.anvillib.event.Bus;
+import net.anvilcraft.anvillib.event.IEventBusRegisterable;
 import net.anvilcraft.anvillib.recipe.RecipesEvent;
 import net.anvilcraft.anvillib.recipe.ShapedRecipeBuilder;
 import net.anvilcraft.ntx4core.Ntx4Core;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
-@EventBusSubscriber(modid = Ntx4Core.MODID, bus = Bus.MOD)
-public class RecipeReplacements {
-    @SubscribeEvent
-    public static void onRecipeRegister(RecipesEvent ev) {
+public class RecipeReplacements implements IEventBusRegisterable {
+    public void replaceRecipes(RecipesEvent ev) {
         if (!FMLEnvironment.production)
             return;
 
@@ -126,5 +123,10 @@ public class RecipeReplacements {
                    .ingredient('D', "rftoolsdim:dimension_builder")
                    .build()
         );
+    }
+
+    @Override
+    public void registerEventHandlers(Bus bus) {
+        bus.register(RecipesEvent.class, this::replaceRecipes);
     }
 }

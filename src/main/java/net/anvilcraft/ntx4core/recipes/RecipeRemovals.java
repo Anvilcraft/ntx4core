@@ -1,19 +1,15 @@
 package net.anvilcraft.ntx4core.recipes;
 
 import net.anvilcraft.anvillib.Util;
+import net.anvilcraft.anvillib.event.Bus;
+import net.anvilcraft.anvillib.event.IEventBusRegisterable;
 import net.anvilcraft.anvillib.recipe.RecipeContainsPredicate;
 import net.anvilcraft.anvillib.recipe.RecipesEvent;
-import net.anvilcraft.ntx4core.Ntx4Core;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
-@EventBusSubscriber(modid = Ntx4Core.MODID, bus = Bus.MOD)
-public class RecipeRemovals {
-    @SubscribeEvent
-    public static void onRecipeRegister(RecipesEvent ev) {
+public class RecipeRemovals implements IEventBusRegisterable {
+    public void removeRecipes(RecipesEvent ev) {
         if (!FMLEnvironment.production)
             return;
 
@@ -23,5 +19,10 @@ public class RecipeRemovals {
         ev.removeRecipesMatching(new RecipeContainsPredicate(
             Util.stackFromRegistry(new Identifier("projecte", "transmutation_table"))
         ));
+    }
+
+    @Override
+    public void registerEventHandlers(Bus bus) {
+        bus.register(RecipesEvent.class, this::removeRecipes);
     }
 }

@@ -1,22 +1,15 @@
 package net.anvilcraft.ntx4core.recipes;
 
 import net.anvilcraft.anvillib.Util;
+import net.anvilcraft.anvillib.event.Bus;
+import net.anvilcraft.anvillib.event.IEventBusRegisterable;
 import net.anvilcraft.anvillib.recipe.InputReplaceRecipeMapper;
 import net.anvilcraft.anvillib.recipe.RecipesEvent;
-import net.anvilcraft.ntx4core.Ntx4Core;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
-@EventBusSubscriber(modid = Ntx4Core.MODID, bus = Bus.MOD)
-public class InputReplacements {
-    @SubscribeEvent
-    public static void onRecipeRegister(RecipesEvent ev) {
-        if (!FMLEnvironment.production)
-            return;
-
+public class InputReplacements implements IEventBusRegisterable {
+    public void replaceInputs(RecipesEvent ev) {
         var darkMatter = Util.ingredientFromString("projecte:dark_matter");
 
         ev.mapRecipeID(
@@ -50,5 +43,13 @@ public class InputReplacements {
         ev.mapRecipes(new InputReplaceRecipeMapper().replace(
             "deepresonance:machine_frame", "rftoolsbase:machine_frame"
         ));
+    }
+
+    @Override
+    public void registerEventHandlers(Bus bus) {
+        if (!FMLEnvironment.production)
+            return;
+
+        bus.register(RecipesEvent.class, this::replaceInputs);
     }
 }
