@@ -4,7 +4,6 @@ import net.anvilcraft.anvillib.cosmetics.ICosmetic;
 import net.minecraft.util.Identifier;
 
 public class AlecCosmetic implements ICosmetic {
-
     @Override
     public Identifier getAnimationFileLocation() {
         return new Identifier("ntx4core", "animations/alec.json");
@@ -29,5 +28,4 @@ public class AlecCosmetic implements ICosmetic {
     public String getIdleAnimationName() {
         return "animation.alec.idle";
     }
-
 }
