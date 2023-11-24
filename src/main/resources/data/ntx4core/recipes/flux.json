@@ -1,0 +1,22 @@
+{
+    "type": "powah:energizing",
+    "ingredients": [
+        {
+            "item": "minecraft:redstone"
+        },
+        {
+            "tag": "forge:dusts/obsidian"
+        },
+        {
+            "tag": "forge:dusts/ender_pearl"
+        },
+        {
+            "item": "ae2:fluix_dust"
+        }
+    ],
+    "energy": 10000000,
+    "result": {
+        "item": "fluxnetworks:flux_dust",
+        "count": 4
+    }
+}
