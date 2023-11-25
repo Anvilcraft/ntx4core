@@ -10,7 +10,7 @@
     "fluidinputs": {
         "count": 1,
         "0": {
-            "fluid": "bigreactors:redfrigium",
+            "fluid": "mekanism:uranium_hexafluoride",
             "amount": 5000
         }
     },
