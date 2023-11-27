@@ -22,7 +22,7 @@ public class Ntx4CoreStructures {
             ()
                 -> Ntx4CoreFeatures.BORG_KINDBERG.configure(
                     new AdvancedStructurePoolFeatureConfig(
-                        BorgKindbergStructurePieces.START, 7, 256
+                        BorgKindbergStructurePieces.START, 7, 256, true
                     ),
                     TagKey.of(Registry.BIOME_KEY, Ntx4Core.id("has_structure/borg")),
                     true
