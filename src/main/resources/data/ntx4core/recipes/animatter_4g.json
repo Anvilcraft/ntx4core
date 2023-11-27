@@ -1,0 +1,12 @@
+{
+    "type": "mekanism:oxidizing",
+    "input": {
+      "ingredient": {
+        "item": "nuclearscience:cellantimatterlarge"
+      }
+    },
+    "output": {
+      "gas": "mekanism:antimatter",
+      "amount": 400
+    }
+  }

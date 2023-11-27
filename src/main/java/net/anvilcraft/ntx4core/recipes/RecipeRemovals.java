@@ -19,6 +19,8 @@ public class RecipeRemovals implements IEventBusRegisterable {
         ev.removeRecipesMatching(new RecipeContainsPredicate(
             Util.stackFromRegistry(new Identifier("projecte", "transmutation_table"))
         ));
+        ev.removeRecipeID(new Identifier("projecte", "red_matter_alt"));
+        ev.removeRecipeID(new Identifier("draconicevolution", "components/awakened_core"));
     }
 
     @Override

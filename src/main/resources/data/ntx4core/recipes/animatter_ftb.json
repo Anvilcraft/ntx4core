@@ -1,0 +1,12 @@
+{
+    "type": "mekanism:oxidizing",
+    "input": {
+      "ingredient": {
+        "item": "ftbic:antimatter"
+      }
+    },
+    "output": {
+      "gas": "mekanism:antimatter",
+      "amount": 1
+    }
+  }

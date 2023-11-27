@@ -1,5 +1,6 @@
 package net.anvilcraft.ntx4core.recipes;
 
+import net.anvilcraft.anvillib.Util;
 import net.anvilcraft.anvillib.event.Bus;
 import net.anvilcraft.anvillib.event.IEventBusRegisterable;
 import net.anvilcraft.anvillib.recipe.RecipesEvent;
@@ -28,6 +29,15 @@ public class ShapedRecipes implements IEventBusRegisterable {
                               .ingredient('C', "mekanism:teleportation_core")
                               .ingredient('E', "mekanism:energy_tablet")
                               .build());
+        ev.registerRecipe(new ShapedRecipeBuilder(
+            Ntx4Core.id("dark_matter_conversion"), 
+            Util.stackFromRegistry(new Identifier("projecte", "dark_matter"))
+            )
+            .pattern("FDF", "DDD", "FDF")
+            .ingredient('D', "nuclearscience:celldarkmatter")
+            .ingredient('F', "projecte:aeternalis_fuel")
+            .build()
+        );
     }
 
     @Override
