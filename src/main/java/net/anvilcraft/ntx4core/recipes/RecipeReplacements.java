@@ -332,6 +332,48 @@ public class RecipeReplacements implements IEventBusRegisterable {
                 .ingredient('P', "ae2:logic_processor")
                 .build()
         );
+
+        ev.mapRecipeID(
+            new Identifier("mininggadgets", "mininggadget_simple"), 
+            r -> new ShapedRecipeBuilder(Ntx4Core.id("mininggadget_simple"), new ItemStack(r.getOutput().getItem(), 1))
+                .pattern("RME", "PCD", "EI ")
+                .ingredient('I', "#forge:ingots/iron")
+                .ingredient('R', "#forge:dusts/redstone")
+                .ingredient('C', "powah:capacitor_blazing")
+                .ingredient('M', "mininggadgets:upgrade_empty")
+                .ingredient('E', "powah:steel_energized")
+                .ingredient('D', "#forge:gems/diamond")
+                .ingredient('P', "powah:dielectric_paste")
+                .build()
+        );
+
+        ev.mapRecipeID(
+            new Identifier("mininggadgets", "mininggadget_fancy"), 
+            r -> new ShapedRecipeBuilder(Ntx4Core.id("mininggadget_fancy"), new ItemStack(r.getOutput().getItem(), 1))
+                .pattern("RME", "PCD", "EI ")
+                .ingredient('I', "#forge:ingots/iron")
+                .ingredient('R', "#forge:dusts/redstone")
+                .ingredient('C', "powah:capacitor_niotic")
+                .ingredient('M', "mininggadgets:upgrade_empty")
+                .ingredient('E', "powah:steel_energized")
+                .ingredient('D', "#forge:gems/diamond")
+                .ingredient('P', "powah:dielectric_paste")
+                .build()
+        );
+
+        ev.mapRecipeID(
+            new Identifier("mininggadgets", "mininggadget"), 
+            r -> new ShapedRecipeBuilder(Ntx4Core.id("mininggadget"), new ItemStack(r.getOutput().getItem(), 1))
+                .pattern("RME", "PCD", "EI ")
+                .ingredient('I', "#forge:ingots/iron")
+                .ingredient('R', "#forge:dusts/redstone")
+                .ingredient('C', "powah:capacitor_spirited")
+                .ingredient('M', "mininggadgets:upgrade_empty")
+                .ingredient('E', "powah:steel_energized")
+                .ingredient('D', "#forge:gems/diamond")
+                .ingredient('P', "powah:dielectric_paste")
+                .build()
+        );
     }
 
     @Override
