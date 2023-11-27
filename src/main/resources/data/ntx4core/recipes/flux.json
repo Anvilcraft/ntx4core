@@ -2,7 +2,7 @@
     "type": "powah:energizing",
     "ingredients": [
         {
-            "item": "minecraft:redstone"
+            "item": "psi:psidust"
         },
         {
             "tag": "forge:dusts/obsidian"

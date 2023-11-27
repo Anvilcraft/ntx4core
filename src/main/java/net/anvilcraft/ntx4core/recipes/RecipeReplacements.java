@@ -21,7 +21,7 @@ public class RecipeReplacements implements IEventBusRegisterable {
             -> new ShapedRecipeBuilder(Ntx4Core.id("shrinking_device"), r.getOutput())
                    .pattern("IDI", "TFE", "IDI")
                    .ingredient('I', "#forge:ingots/osmium")
-                   .ingredient('D', "projecte:dark_matter")
+                   .ingredient('D', "fluxnetworks:flux_dust")
                    .ingredient('T', "rftoolsbase:tablet")
                    .ingredient('F', "ae2:fluix_pearl")
                    .ingredient('E', "mekanism:energy_tablet")
@@ -31,10 +31,10 @@ public class RecipeReplacements implements IEventBusRegisterable {
         ev.mapRecipeID(
             new Identifier("compactmachines", "personal_shrinking_device"),
             r
-            -> new ShapedRecipeBuilder(Ntx4Core.id("shrinking_device"), r.getOutput())
+            -> new ShapedRecipeBuilder(Ntx4Core.id("personal_shrinking_device"), r.getOutput())
                    .pattern("IDI", "TFE", "IDI")
                    .ingredient('I', "#forge:ingots/iron")
-                   .ingredient('D', "projecte:dark_matter")
+                   .ingredient('D', "fluxnetworks:flux_dust")
                    .ingredient('T', "rftoolsbase:tablet")
                    .ingredient('F', "ae2:fluix_pearl")
                    .ingredient('E', "mekanism:energy_tablet")
@@ -81,13 +81,65 @@ public class RecipeReplacements implements IEventBusRegisterable {
         );
 
         ev.mapRecipeID(
+            new Identifier("buildinggadgets", "gadget_building"),
+            r
+            -> new ShapedRecipeBuilder(Ntx4Core.id("gadget_building"), r.getOutput())
+                   .pattern("MGM", "TCE", "MGM")
+                   .ingredient('M', "#forge:ingots/iron")
+                   .ingredient('G', "fluxnetworks:flux_dust")
+                   .ingredient('T', "rftoolsbase:tablet")
+                   .ingredient('C', "constructionwand:diamond_wand")
+                   .ingredient('E', "mekanism:energy_tablet")
+                   .build()
+        );
+
+        ev.mapRecipeID(
+            new Identifier("buildinggadgets", "gadget_exchanging"),
+            r
+            -> new ShapedRecipeBuilder(Ntx4Core.id("gadget_exchanging"), r.getOutput())
+                   .pattern("MGM", "TCE", "MGM")
+                   .ingredient('M', "#forge:ingots/iron")
+                   .ingredient('G', "fluxnetworks:flux_dust")
+                   .ingredient('T', "rftoolsbase:tablet")
+                   .ingredient('C', "psi:psigem")
+                   .ingredient('E', "mekanism:energy_tablet")
+                   .build()
+        );
+
+        ev.mapRecipeID(
+            new Identifier("buildinggadgets", "gadget_copy_paste"),
+            r
+            -> new ShapedRecipeBuilder(Ntx4Core.id("gadget_copy_paste"), r.getOutput())
+                   .pattern("MGM", "TCE", "MGM")
+                   .ingredient('M', "#forge:ingots/iron")
+                   .ingredient('G', "fluxnetworks:flux_dust")
+                   .ingredient('T', "rftoolsbase:tablet")
+                   .ingredient('C', "rftoolsbuilder:builder")
+                   .ingredient('E', "mekanism:energy_tablet")
+                   .build()
+        );
+
+        ev.mapRecipeID(
+            new Identifier("buildinggadgets", "gadget_destruction"),
+            r
+            -> new ShapedRecipeBuilder(Ntx4Core.id("gadget_destruction"), r.getOutput())
+                   .pattern("MGM", "TCE", "MGM")
+                   .ingredient('M', "#forge:ingots/iron")
+                   .ingredient('G', "fluxnetworks:flux_dust")
+                   .ingredient('T', "rftoolsbase:tablet")
+                   .ingredient('C', "constructionwand:core_destruction")
+                   .ingredient('E', "mekanism:energy_tablet")
+                   .build()
+        );
+
+        ev.mapRecipeID(
             new Identifier("enderrift", "rift"),
             r
             -> new ShapedRecipeBuilder(Ntx4Core.id("enderrift"), r.getOutput())
                    .pattern("PDP", "DCD", "PDP")
                    .ingredient('P', "ae2:fluix_pearl")
                    .ingredient('C', "mekanism:qio_drive_array")
-                   .ingredient('D', "projecte:dark_matter")
+                   .ingredient('D', "fluxnetworks:flux_dust")
                    .build()
         );
 
