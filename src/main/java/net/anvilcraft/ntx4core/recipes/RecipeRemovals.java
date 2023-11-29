@@ -19,6 +19,10 @@ public class RecipeRemovals implements IEventBusRegisterable {
         ev.removeRecipesMatching(new RecipeContainsPredicate(
             Util.stackFromRegistry(new Identifier("projecte", "transmutation_table"))
         ));
+        ev.removeRecipesMatching((r) -> {
+            var id = r.getId();
+            return id.getNamespace().equals("createappliedkinetics") && id.getPath().startsWith("inscriber");
+        });
         ev.removeRecipeID(new Identifier("projecte", "red_matter_alt"));
         ev.removeRecipeID(new Identifier("draconicevolution", "components/awakened_core"));
         ev.removeRecipeID(new Identifier("electrodynamics", "ingotsteel_ingot_smelting"));

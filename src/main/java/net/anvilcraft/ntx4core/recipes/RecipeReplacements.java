@@ -432,6 +432,17 @@ public class RecipeReplacements implements IEventBusRegisterable {
                 .ingredient('P', "powah:dielectric_paste")
                 .build()
         );
+
+        ev.mapRecipeID(
+            new Identifier("mekanism", "metallurgic_infuser"), 
+            r -> new ShapedRecipeBuilder(Ntx4Core.id("metallurgic_infuser"), new ItemStack(r.getOutput().getItem(), 1))
+                .pattern("IFI", "DCD", "IFI")
+                .ingredient('I', "#forge:ingots/osmium")
+                .ingredient('D', "#forge:dusts/redstone")
+                .ingredient('C', "industrialforegoing:machine_frame_simple")
+                .ingredient('F', "minecraft:furnace")
+                .build()
+        );
     }
 
     @Override

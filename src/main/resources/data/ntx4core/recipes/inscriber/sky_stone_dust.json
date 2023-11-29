@@ -1,0 +1,12 @@
+{
+  "type": "ae2:inscriber",
+  "mode": "inscribe",
+  "result": {
+    "item": "ae2:sky_dust"
+  },
+  "ingredients": {
+    "middle": {
+      "item": "ae2:sky_stone_block"
+    }
+  }
+}
