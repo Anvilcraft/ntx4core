@@ -46,38 +46,3 @@ mandatory = true
 versionRange = "[0.2.0,)"
 ordering = "NONE"
 side = "BOTH"
-
-[[dependencies.ntx4core]]
-modId = "ftbic"
-mandatory = false
-ordering = "AFTER"
-versionRange = "[1802.0.0,)"
-side = "BOTH"
-
-[[dependencies.ntx4core]]
-modId = "mekanism"
-mandatory = false
-ordering = "AFTER"
-versionRange = "[10.0.0,)"
-side = "BOTH"
-
-[[dependencies.ntx4core]]
-modId = "crossroads"
-mandatory = false
-ordering = "AFTER"
-versionRange = "[1.18.2,)"
-side = "BOTH"
-
-[[dependencies.ntx4core]]
-modId = "projectred_exploration"
-mandatory = false
-ordering = "AFTER"
-versionRange = "[4.0.0,)"
-side = "BOTH"
-
-[[dependencies.ntx4core]]
-modId = "futurepack"
-mandatory = false
-ordering = "AFTER"
-versionRange = "[33.0.0,)"
-side = "BOTH"
