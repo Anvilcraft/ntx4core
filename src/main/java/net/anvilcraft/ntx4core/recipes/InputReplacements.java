@@ -29,6 +29,13 @@ public class InputReplacements implements IEventBusRegisterable {
             )
         );
 
+        ev.mapRecipeID(
+            new Identifier("rftoolsbase", "machine_frame"),
+            new InputReplaceRecipeMapper().replace(
+                "minecraft:iron_ingot", "#forge:ingots/steel"
+            )
+        );
+
         var philosopherStoneMapper = new InputReplaceRecipeMapper()
             .replace("#forge:gems/diamond", "ae2:singularity")
             .replace("#forge:dusts/redstone", "chemlib:erbium_dust")
@@ -44,6 +51,10 @@ public class InputReplacements implements IEventBusRegisterable {
         // Unify DeepResonance machine frames
         ev.mapRecipes(new InputReplaceRecipeMapper().replace(
             "deepresonance:machine_frame", "rftoolsbase:machine_frame"
+        ));
+
+        ev.mapRecipes(new InputReplaceRecipeMapper().replace(
+            "thermal:machine_frame", "industrialforegoing:machine_frame_simple"
         ));
     }
 
