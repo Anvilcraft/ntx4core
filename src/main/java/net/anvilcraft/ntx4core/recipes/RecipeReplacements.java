@@ -281,6 +281,64 @@ public class RecipeReplacements implements IEventBusRegisterable {
         );
 
         ev.mapRecipeID(
+            new Identifier("alchemistry", "atomizer"), 
+            r -> new ShapedRecipeBuilder(Ntx4Core.id("atomizer"), r.getOutput())
+                .pattern("ACA", "TMP", "ACA")
+                .ingredient('M', "mekanism:dynamic_tank")
+                .ingredient('C', "#forge:circuits/basic")
+                .ingredient('A', "#forge:alloys/advanced")
+                .ingredient('T', "mekanism:basic_fluid_tank")
+                .ingredient('P', "#mekanism:personal_storage")
+                .build()
+        );
+
+        ev.mapRecipeID(
+            new Identifier("alchemistry", "liquifier"), 
+            r -> new ShapedRecipeBuilder(Ntx4Core.id("liquifier"), r.getOutput())
+                .pattern("ACA", "PMT", "ACA")
+                .ingredient('M', "mekanism:dynamic_tank")
+                .ingredient('C', "#forge:circuits/basic")
+                .ingredient('A', "#forge:alloys/advanced")
+                .ingredient('T', "mekanism:basic_fluid_tank")
+                .ingredient('P', "#mekanism:personal_storage")
+                .build()
+        );
+
+        ev.mapRecipeID(
+            new Identifier("alchemistry", "dissolver"), 
+            r -> new ShapedRecipeBuilder(Ntx4Core.id("dissolver"), r.getOutput())
+                .pattern("ACA", "PMT", "ACA")
+                .ingredient('M', "mekanism:steel_casing")
+                .ingredient('C', "#forge:circuits/elite")
+                .ingredient('A', "#forge:ingots/refined_obsidian")
+                .ingredient('T', "mekanism:basic_chemical_tank")
+                .ingredient('P', "#mekanism:personal_storage")
+                .build()
+        );
+
+        ev.mapRecipeID(
+            new Identifier("alchemistry", "combiner"), 
+            r -> new ShapedRecipeBuilder(Ntx4Core.id("combiner"), r.getOutput())
+                .pattern("ACA", "PMP", "ACA")
+                .ingredient('M', "mekanism:steel_casing")
+                .ingredient('C', "#forge:circuits/advanced")
+                .ingredient('A', "#forge:alloys/elite")
+                .ingredient('P', "#mekanism:personal_storage")
+                .build()
+        );
+
+        ev.mapRecipeID(
+            new Identifier("alchemistry", "compactor"), 
+            r -> new ShapedRecipeBuilder(Ntx4Core.id("compactor"), r.getOutput())
+                .pattern("AQA", "CMC", "AQA")
+                .ingredient('M', "mekanism:steel_casing")
+                .ingredient('C', "#forge:circuits/ultimate")
+                .ingredient('A', "#forge:ingots/refined_obsidian")
+                .ingredient('Q', "ae2:charged_certus_quartz_crystal")
+                .build()
+        );
+
+        ev.mapRecipeID(
             new Identifier("psi", "programmer"), 
             r -> new ShapedRecipeBuilder(Ntx4Core.id("psi_programmer"), r.getOutput())
                 .pattern("SDS", "SCS", " S ")
