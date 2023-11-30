@@ -30,6 +30,13 @@ public class InputReplacements implements IEventBusRegisterable {
         );
 
         ev.mapRecipeID(
+            new Identifier("projecte", "collector_mk1"),
+            new InputReplaceRecipeMapper().replace(
+                "#forge:storage_blocks/diamond", "mekanism:pellet_antimatter"
+            )
+        );
+
+        ev.mapRecipeID(
             new Identifier("rftoolsbase", "machine_frame"),
             new InputReplaceRecipeMapper().replace(
                 "minecraft:iron_ingot", "#forge:ingots/steel"
