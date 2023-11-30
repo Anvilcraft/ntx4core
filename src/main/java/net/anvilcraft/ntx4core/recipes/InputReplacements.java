@@ -43,6 +43,20 @@ public class InputReplacements implements IEventBusRegisterable {
             )
         );
 
+        ev.mapRecipeID(
+            new Identifier("advgenerators", "crafting/iron_frame"),
+            new InputReplaceRecipeMapper().replace(
+                "#forge:ingots/iron", "#forge:ingots/steel"
+            )
+        );
+
+        ev.mapRecipeID(
+            new Identifier("advgenerators", "crafting/controller"),
+            new InputReplaceRecipeMapper().replace(
+                "#forge:ingots/iron", "#forge:ingots/steel"
+            )
+        );
+
         var philosopherStoneMapper = new InputReplaceRecipeMapper()
             .replace("#forge:gems/diamond", "ae2:singularity")
             .replace("#forge:dusts/redstone", "chemlib:erbium_dust")
