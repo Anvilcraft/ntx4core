@@ -1,0 +1,25 @@
+{
+    "advancements": [
+      {
+        "conditions": [],
+        "advancement": {
+          "rewards": {
+            "loot": [
+              "ntx4core:gameplay/starting_items"
+            ]
+          },
+          "criteria": {
+            "tick": {
+              "trigger": "minecraft:tick",
+              "conditions": {}
+            }
+          },
+          "requirements": [
+            [
+              "tick"
+            ]
+          ]
+        }
+      }
+    ]
+  }
