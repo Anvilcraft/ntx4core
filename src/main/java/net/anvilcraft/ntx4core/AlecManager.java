@@ -2,6 +2,7 @@ package net.anvilcraft.ntx4core;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.UUID;
 
 import net.minecraft.client.MinecraftClient;
 
@@ -16,6 +17,10 @@ public class AlecManager {
         "d65372eff2f64c44aa204db9e480e0fe", // Merlinmo
         "be693d87cb634783a264075a7c6ab0f8", // tilera
     };
+
+    public static final UUID[] ALECUBUS_UUIDS
+        = new UUID[] { UUID.fromString("380df991-f603-344c-a090-369bad2a924a"),
+                       UUID.fromString("81f895e1-33ca-46ec-b1b6-124ba832a352") };
 
     public static final boolean HAS_ALEC
         = Arrays.stream(ALEC_UUIDS)
