@@ -63,8 +63,8 @@ public class Ntx4Core {
             event.addRepositorySource(
                 (consumer, constructor) 
                     -> consumer.accept(ResourcePackProfile.of(
-                        Ntx4Core.id("oregen_tweaks").toString(), 
-                        false, () -> new ModFilePackResources("NTX4 Oregen Tweaks", modFile, "datapacks/oregen_tweaks"), 
+                        Ntx4Core.id("ntx4core_tweaks").toString(), 
+                        false, () -> new ModFilePackResources("NTX4 Tweaks", modFile, "datapacks/ntx4core_tweaks"), 
                         constructor, 
                         ResourcePackProfile.InsertionPosition.TOP, 
                         ResourcePackSource.PACK_SOURCE_NONE
