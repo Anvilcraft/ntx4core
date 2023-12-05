@@ -7,17 +7,21 @@ import net.anvilcraft.anvillib.cosmetics.CosmeticsManager;
 import net.anvilcraft.anvillib.event.Bus;
 import net.anvilcraft.ntx4core.cosmetics.StaticCosmeticProvider;
 import net.anvilcraft.ntx4core.recipes.InputReplacements;
+import net.anvilcraft.ntx4core.recipes.OrbDuplicationRecipe;
 import net.anvilcraft.ntx4core.recipes.RecipeRemovals;
 import net.anvilcraft.ntx4core.recipes.RecipeReplacements;
 import net.anvilcraft.ntx4core.recipes.ShapedRecipes;
 import net.anvilcraft.ntx4core.worldgen.Ntx4CoreFeatures;
 import net.anvilcraft.ntx4core.worldgen.Ntx4CoreStructures;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.resource.ResourcePackProfile;
 import net.minecraft.resource.ResourcePackSource;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddPackFindersEvent;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
@@ -38,6 +42,7 @@ public class Ntx4Core {
         Ntx4CoreFeatures.STRUCTURE_FEATURES.register(bus);
         Ntx4CoreStructures.CONFIGURED_STRUCTURE_FEATURES.register(bus);
         bus.addListener(Ntx4Core::addPackFinders);
+        bus.addGenericListener(RecipeSerializer.class, this::registerRecipeSerializers);
 
         Bus.MAIN.register(new InputReplacements());
         Bus.MAIN.register(new RecipeRemovals());
@@ -71,5 +76,11 @@ public class Ntx4Core {
                     ))
             );
         }
+    }
+
+    public void registerRecipeSerializers(RegistryEvent.Register<RecipeSerializer<?>> event) {
+        event.getRegistry().registerAll(
+                new SpecialRecipeSerializer<>(OrbDuplicationRecipe::new).setRegistryName("orb_duplication")
+        );
     }
 }

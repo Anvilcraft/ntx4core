@@ -27,6 +27,7 @@ public class RecipeRemovals implements IEventBusRegisterable {
         ev.removeRecipeID(new Identifier("draconicevolution", "components/awakened_core"));
         ev.removeRecipeID(new Identifier("electrodynamics", "ingotsteel_ingot_smelting"));
         ev.removeRecipeID(new Identifier("beyond_earth", "steel_ingot_blasting"));
+        ev.removeRecipeID(new Identifier("enderrift", "rift_orb"));
     }
 
     @Override

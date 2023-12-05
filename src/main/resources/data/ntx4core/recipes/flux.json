@@ -14,7 +14,7 @@
             "item": "ae2:fluix_dust"
         }
     ],
-    "energy": 10000000,
+    "energy": 100000,
     "result": {
         "item": "fluxnetworks:flux_dust",
         "count": 4

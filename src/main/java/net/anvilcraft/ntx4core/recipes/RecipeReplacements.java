@@ -136,22 +136,15 @@ public class RecipeReplacements implements IEventBusRegisterable {
             new Identifier("enderrift", "rift"),
             r
             -> new ShapedRecipeBuilder(Ntx4Core.id("enderrift"), r.getOutput())
-                   .pattern("PDP", "DCD", "PDP")
+                   .pattern("DPD", "P P", "DPD")
                    .ingredient('P', "ae2:fluix_pearl")
-                   .ingredient('C', "mekanism:qio_drive_array")
                    .ingredient('D', "fluxnetworks:flux_dust")
                    .build()
         );
 
         ev.mapRecipeID(
-            new Identifier("enderrift", "rift_orb"),
-            r
-            -> new ShapedRecipeBuilder(Ntx4Core.id("rift_orb"), r.getOutput())
-                   .pattern("DPD", "PCP", "DPD")
-                   .ingredient('D', "projecte:dark_matter")
-                   .ingredient('P', Items.ENDER_EYE)
-                   .ingredient('C', "ae2:singularity")
-                   .build()
+            new Identifier("enderrift", "orb_duplication"),
+            r -> new OrbDuplicationRecipe(r.getId())
         );
 
         ev.mapRecipeID(

@@ -1,0 +1,27 @@
+{
+    "type": "powah:energizing",
+    "ingredients": [
+        {
+            "item": "ae2:singularity"
+        },
+        {
+            "item": "minecraft:ender_eye"
+        },
+        {
+            "item": "powah:crystal_nitro"
+        },
+        {
+            "item": "powah:crystal_nitro"
+        },
+        {
+            "item": "mekanism:pellet_antimatter"
+        },
+        {
+            "item": "fluxnetworks:flux_dust"
+        }
+    ],
+    "energy": 10000000,
+    "result": {
+        "item": "enderrift:rift_orb"
+    }
+}
