@@ -1,0 +1,31 @@
+{
+    "category": "ntx4core:dimensions",
+    "name": "Islands Dimension",
+    "icon": "dmlreforged:living_matter_hellish",
+    "sortnum": 4,
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "title": "The Flat World",
+            "item": "dmlreforged:living_matter_hellish",
+            "text": "The $(thing)Islands Dimension/$ is a nether-like dimension made of islands instead of caverns."
+        },
+        {
+            "type": "patchouli:multiblock",
+            "name": "Islands Portal",
+            "multiblock": {
+                "pattern": [
+                    ["_##_"],
+                    ["#  #"],
+                    ["#  #"],
+                    ["#0 #"],
+                    ["_##_"]
+                ],
+                "mapping": {
+                    "#": "minecraft:smooth_basalt"
+                },
+                "symmetrical": true
+            }
+        }
+    ]
+}

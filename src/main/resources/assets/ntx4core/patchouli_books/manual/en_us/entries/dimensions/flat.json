@@ -1,0 +1,31 @@
+{
+    "category": "ntx4core:dimensions",
+    "name": "Flat World",
+    "icon": "powah:crystal_blazing",
+    "sortnum": 3,
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "title": "The Flat World",
+            "item": "powah:crystal_blazing",
+            "text": "This portal will lead you to a flat world with nothing but endless grass. Ideal for large-scale projects where space takes priority over beautiful terrain!"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "name": "Flat World Portal",
+            "multiblock": {
+                "pattern": [
+                    ["_##_"],
+                    ["#  #"],
+                    ["#  #"],
+                    ["#0 #"],
+                    ["_##_"]
+                ],
+                "mapping": {
+                    "#": "minecraft:quartz_block"
+                },
+                "symmetrical": true
+            }
+        }
+    ]
+}

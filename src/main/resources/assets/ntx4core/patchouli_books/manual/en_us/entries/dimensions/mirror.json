@@ -1,0 +1,31 @@
+{
+    "category": "ntx4core:dimensions",
+    "name": "Mirror Dimension",
+    "icon": "dmlreforged:living_matter_overworldian",
+    "sortnum": 5,
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "title": "The Mirror Dimension",
+            "item": "dmlreforged:living_matter_overworldian",
+            "text": "The $(thing)Mirror Dimension/$ is completely identical to the overworld... or so it seems.$(br2)Upon further research, you exhibit strange magical fields in this dimension..."
+        },
+        {
+            "type": "patchouli:multiblock",
+            "name": "Mirror Portal",
+            "multiblock": {
+                "pattern": [
+                    ["_##_"],
+                    ["#  #"],
+                    ["#  #"],
+                    ["#0 #"],
+                    ["_##_"]
+                ],
+                "mapping": {
+                    "#": "minecraft:amethyst_block"
+                },
+                "symmetrical": true
+            }
+        }
+    ]
+}

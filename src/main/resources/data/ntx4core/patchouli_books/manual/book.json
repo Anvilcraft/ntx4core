@@ -1,0 +1,15 @@
+{
+    "name": "book.ntx4core.name",
+    "subtitle": "book.ntx4core.subtitle",
+    "landing_text": "book.ntx4core.landing",
+    "book_texture": "patchouli:textures/gui/book_cyan.png",
+    "model": "ntx4core:manual",
+    "dont_generate_book": true,
+    "custom_book_item": "ntx4core:manual",
+    "show_progress": false,
+    "advancement_namespaces": ["ntx4core"],
+    "use_resource_pack": true,
+    "macros": {
+        "\n": "$(br)"
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "category": "ntx4core:dimensions",
+    "name": "Lost Cities",
+    "icon": "legacy_revived:cyan_flower",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "title": "The Lost Cities",
+            "item": "legacy_revived:cyan_flower",
+            "text": "By containing the nostalgia energy of the allmighty $(l)Stonecutter/$ and a flower from days long gone, you manage to channel a rift into a long lost city.$(br2)Perfect for exploration!"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "name": "Lost Cities Portal",
+            "multiblock": {
+                "pattern": [
+                    ["_##_"],
+                    ["#  #"],
+                    ["#  #"],
+                    ["#0 #"],
+                    ["_##_"]
+                ],
+                "mapping": {
+                    "#": "legacy_revived:legacy_stonecutter"
+                },
+                "symmetrical": true
+            }
+        }
+    ]
+}

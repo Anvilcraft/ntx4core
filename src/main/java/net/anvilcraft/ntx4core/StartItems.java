@@ -37,12 +37,8 @@ public class StartItems {
     }
 
     public static void giveStartingItemsTo(PlayerEntity pl) {
-        // Apples
-        {
-            var stack = new ItemStack(Items.APPLE, 16);
-            stack.setCustomName(new LiteralText("Manufacturer of Inferior Devices"));
-            ItemHandlerHelper.giveItemToPlayer(pl, stack);
-        }
+        // Notex 4 Guide
+        ItemHandlerHelper.giveItemToPlayer(pl, new ItemStack(Ntx4CoreItems.MANUAL.get()));
 
         // Akashic Tome
         {
@@ -101,6 +97,13 @@ public class StartItems {
                 ForgeRegistries.ITEMS.getValue(new Identifier("akashictome", "tome")), 1
             );
             stack.setNbt(tag);
+            ItemHandlerHelper.giveItemToPlayer(pl, stack);
+        }
+
+        // Apples
+        {
+            var stack = new ItemStack(Items.APPLE, 16);
+            stack.setCustomName(new LiteralText("Manufacturer of Inferior Devices"));
             ItemHandlerHelper.giveItemToPlayer(pl, stack);
         }
     }

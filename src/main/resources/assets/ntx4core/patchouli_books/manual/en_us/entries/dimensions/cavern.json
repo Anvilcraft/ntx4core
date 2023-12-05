@@ -1,0 +1,31 @@
+{
+    "category": "ntx4core:dimensions",
+    "name": "Cavern",
+    "icon": "minecraft:deepslate",
+    "sortnum": 0,
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "title": "The Cavern",
+            "item": "minecraft:amethyst_shard",
+            "text": "$(thing)The Cavern/$ is an underground dimension of never-ending caves. Perfect for mining and getting lost!"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "name": "Cavern Portal",
+            "multiblock": {
+                "pattern": [
+                    ["_##_"],
+                    ["#  #"],
+                    ["#  #"],
+                    ["#0 #"],
+                    ["_##_"]
+                ],
+                "mapping": {
+                    "#": "minecraft:deepslate"
+                },
+                "symmetrical": true
+            }
+        }
+    ]
+}

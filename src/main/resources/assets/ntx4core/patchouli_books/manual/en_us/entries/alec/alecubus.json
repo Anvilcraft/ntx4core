@@ -1,0 +1,18 @@
+{
+    "category": "ntx4core:alec",
+    "name": "The Alecubus",
+    "icon": "ntx4core:alecubus",
+    "sortnum": 0,
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "title": "The Alecubus",
+            "item": "ntx4core:alecubus",
+            "text": "The $(item)Alecubus/$ is your end goal. It is the cube form of the mighty Alec.\nIt is an item which requires you to master many of the pack's mods to make.$(br2)As an inhabitant of this world it might just be you, yes you, $(l)$(playername)/$, to first create the one and only $(item)Alecubus/$!"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "In order to create the $(item)Alecubus/$, you must start from nothing but a computer and work your way up through many components in order to arrive at the $(item)Alecubus/$. On this journey, you will venture through $(thing)Create/$, $(thing)Mana and Artifice/$, $(thing)Powah/$, $(thing)Pneumaticcraft/$, $(thing)Botania/$, $(thing)Nuclear Science/$, $(thing)Assembly Line Machines/$, $(thing)PSI/$, $(thing)Blood Magic/$, $(thing)Draconic Evolution/$ and finally $(thing)Mekanism/$.$(br2)Some might say it'd be silly to take on such a journey alone... Or at all."
+        }
+    ]
+}

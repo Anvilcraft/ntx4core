@@ -1,5 +1,6 @@
 package net.anvilcraft.ntx4core;
 
+import net.anvilcraft.ntx4core.items.ItemManual;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
@@ -51,6 +52,9 @@ public class Ntx4CoreItems {
 
     public static final RegistryObject<Item> CHAOTIC_CONSTRUCT
         = registerCraftingIngredient("chaotic_construct");
+
+    public static final RegistryObject<Item> MANUAL
+        = ITEMS.register("manual", () -> new ItemManual());
 
     private static RegistryObject<Item> registerCraftingIngredient(String id) {
         return ITEMS.register(

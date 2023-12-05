@@ -19,12 +19,9 @@ loom {
 
 repositories {
     mavenLocal()
-    maven {
-        url "https://maven.tilera.xyz/"
-    }
-    maven {
-        url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
-    }
+    maven { url "https://maven.tilera.xyz/" }
+    maven { url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
+    maven { url "https://maven.blamejared.com" }
 }
 
 dependencies {
@@ -36,6 +33,7 @@ dependencies {
 
     modImplementation "software.bernie.geckolib:geckolib-forge-1.18:3.0.57"
     modImplementation "net.anvilcraft:anvillib-18-forge:1.1.0"
+    modImplementation "vazkii.patchouli:Patchouli:1.18.2-66"
 }
 
 processResources {

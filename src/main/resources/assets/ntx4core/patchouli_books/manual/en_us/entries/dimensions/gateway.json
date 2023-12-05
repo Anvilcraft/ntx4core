@@ -1,0 +1,31 @@
+{
+    "category": "ntx4core:dimensions",
+    "name": "Gateway Portals",
+    "icon": "minecraft:ender_eye",
+    "sortnum": 999,
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "title": "The Flat World",
+            "item": "minecraft:ender_eye",
+            "text": "Gateway Portals do not lead to new dimensions, but link up within the $(l)same dimension/$. Build 2 portals of the $(l)same size/$ and activate one of them to create a link!"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "name": "Gateway Portal",
+            "multiblock": {
+                "pattern": [
+                    ["_##_"],
+                    ["#  #"],
+                    ["#  #"],
+                    ["#0 #"],
+                    ["_##_"]
+                ],
+                "mapping": {
+                    "#": "minecraft:prismarine"
+                },
+                "symmetrical": true
+            }
+        }
+    ]
+}

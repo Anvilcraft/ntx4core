@@ -1,0 +1,68 @@
+{
+    "category": "ntx4core:alec",
+    "name": "The Components",
+    "icon": "ntx4core:chaotic_construct",
+    "sortnum": 2,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "title": "The Components",
+            "text": "The $(thing)components/$ form a hirarchy of crafting components, the greatest one of which is the $(item)Chaotic Core/$. They have other uses but their primary purpose is to form the heart of the $(item)Alecubus/$. To craft the mighty $(item)Alecubus/$, you must work your way up.\n$(o)Click the items to view their recipes./$"
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "ntx4core:computational_core",
+            "text": "The $(item)Computational Core/$ is the first step in the long journey ahead of you. It is created by compressing the computational power of an $(l)advanced/$ computer into a core small enough to fit into your hand."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "ntx4core:energy_infused_core",
+            "text": "By infusing the $(item)Computational Core/$ with the exceptionally hot $(thing)Classic Lava/$ over the searing inferno of a $(thing)superheated Blaze Burner/$, you make it even faster.$(br2)$(br2)$(o)Kern rennt/$"
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "ntx4core:magical_core",
+            "text": "The $(item)Energy-Infused Core/$ is strong in computational power, yet it lacks magical abilities. You think you can fix this by using your $(thing)Arcane Furnace/$, $(l)levelled up to level 5/$."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "ntx4core:sentient_singularity",
+            "text": "You have created the perfect magical computer, but it lacks... personality.\nBy combining your $(item)Magical Core/$ with a $(item)Singularity/$, an $(item)Ender Core/$ and $(thing)tons of electricity/$, you try manage to successfully imbue your creation with conscience.\n$(o)It seems to know something you don't/$"
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "ntx4core:stabilized_sentience",
+            "text": "Your previous creation, while it does seem to already be smarter than you, doesn't look like it can be trusted to fully use it's power without self-destructing. To remedy this, you figure it'd be good to encase it in a strong and magic-resistant material. $(item)Novasteel Plates/$ seem like just the right choice. By applying them under $(l)high pressure/$, you create a stable container."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "ntx4core:magically_stabilized_sentience",
+            "text": "While your previous results have proven themselves at keeping the $(item)Sentient Singularity/$ from self-destruction, it doesn't quite seem to be able to think straight. You don't quite know what to do about this magical instability, but you figure your friends in $(thing)Alfheim/$ might know more. You hand your creation to them."
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "ntx4core:irradiated_essence",
+            "text": "With your sentient component completed, you see only one way to take this to achieve your ultimate goal of creating the $(item)Alecubus/$. By exposing the $(item)Magically Stabilized Sentience/$ to some highly radioactive $(thing)Uranium Hexafluoride/$, you corrupt the component beyond recognition.$(br2)$(o)Something evil just awoke within/$"
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "ntx4core:corrupted_essence",
+            "text": "The result of your previous experiment seems to have something about it the previous iterations didn't, but it's still utterly discombobulated. You assess the horror you've created and figure that the only way to bind this substance back together is using a highly unstable combination of $(thing)Condensed Void/$ and $(item)Strange Matter/$.$(br2)$(o)It seems to be watching you/$"
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "ntx4core:strange_construct",
+            "text": "You've gotten some stability into your creation in the previous step, but it's nowhere near usable yet. A discovery you've recently heard about comes to mind. The newly-discovered $(l)$(l:dimensions/mirror)Mirror Dimension/$ seems to have unique magical properties. You think your $(item)$(l)Ebony/$$(item) Psimetal CAD/$ can harness these using the $(thing)Ebony & Ivory/$ trick.$(br2)It's staring right into your soul/$"
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "ntx4core:awakened_construct",
+            "text": "The devious look in the eye of the $(item)Strange Construct/$ is already showing, but it's not fully there yet. You decide it would be a good idea to infuse it with the $(#f00)blood of your enemies/$ in your newly-acquired fully upgraded blood altar. You no longer feel safe around your creation.$(br2)$(o)It's plotting against you/$"
+        },
+        {
+            "type": "patchouli:spotlight",
+            "item": "ntx4core:chaotic_construct",
+            "text": "The $(item)Awakened Construct/$, while already a force to be reckoned with does not quite fulfill the requirements of the mighty Alec. You infuse it with the remains of the fallen $(#f00)Chaos Guardian/$. $(l)This will be worthy./$$(br2)$(o)The wrath of the Alec in the palm of your hands/$"
+        }
+    ]
+}

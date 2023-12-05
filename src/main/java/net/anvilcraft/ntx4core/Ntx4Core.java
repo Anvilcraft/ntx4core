@@ -11,6 +11,7 @@ import net.anvilcraft.ntx4core.recipes.OrbDuplicationRecipe;
 import net.anvilcraft.ntx4core.recipes.RecipeRemovals;
 import net.anvilcraft.ntx4core.recipes.RecipeReplacements;
 import net.anvilcraft.ntx4core.recipes.ShapedRecipes;
+import net.anvilcraft.ntx4core.recipes.ShapelessRecipes;
 import net.anvilcraft.ntx4core.worldgen.Ntx4CoreFeatures;
 import net.anvilcraft.ntx4core.worldgen.Ntx4CoreStructures;
 import net.minecraft.recipe.RecipeSerializer;
@@ -26,6 +27,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.forgespi.language.IModFileInfo;
 import net.minecraftforge.forgespi.locating.IModFile;
 
@@ -48,6 +50,7 @@ public class Ntx4Core {
         Bus.MAIN.register(new RecipeRemovals());
         Bus.MAIN.register(new RecipeReplacements());
         Bus.MAIN.register(new ShapedRecipes());
+        Bus.MAIN.register(new ShapelessRecipes());
 
         MinecraftForge.EVENT_BUS.register(Ntx4CoreShaders.class);
         CosmeticsManager.registerProvider(new StaticCosmeticProvider());
@@ -58,20 +61,29 @@ public class Ntx4Core {
     }
 
     public static void addPackFinders(AddPackFindersEvent event) {
+        if (!FMLEnvironment.production)
+            return;
+
         if (event.getPackType() == ResourceType.SERVER_DATA) {
             IModFileInfo modFileInfo = ModList.get().getModFileById(Ntx4Core.MODID);
             if (modFileInfo == null) {
-                Ntx4Core.LOGGER.error("Could not find Ntx4Core mod file info; built-in resource packs will be missing!");
+                Ntx4Core.LOGGER.error(
+                    "Could not find Ntx4Core mod file info; built-in resource packs will be missing!"
+                );
                 return;
             }
             IModFile modFile = modFileInfo.getFile();
             event.addRepositorySource(
-                (consumer, constructor) 
+                (consumer, constructor)
                     -> consumer.accept(ResourcePackProfile.of(
-                        Ntx4Core.id("ntx4core_tweaks").toString(), 
-                        false, () -> new ModFilePackResources("NTX4 Tweaks", modFile, "datapacks/ntx4core_tweaks"), 
-                        constructor, 
-                        ResourcePackProfile.InsertionPosition.TOP, 
+                        Ntx4Core.id("ntx4core_tweaks").toString(),
+                        false,
+                        ()
+                            -> new ModFilePackResources(
+                                "NTX4 Tweaks", modFile, "datapacks/ntx4core_tweaks"
+                            ),
+                        constructor,
+                        ResourcePackProfile.InsertionPosition.TOP,
                         ResourcePackSource.PACK_SOURCE_NONE
                     ))
             );

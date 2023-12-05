@@ -1,0 +1,30 @@
+{
+    "category": "ntx4core:alec",
+    "name": "The BORG Kindberg",
+    "icon": "minecraft:lectern",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "title": "The BORG Kindberg",
+            "text": "The BORG Kindberg is a legendary structure you might find far, far away on your ventures. Within, you will discover the origins of the Alec. Things to find include but aren't limited to:$(li)The Cafeteria's Menu/$$(li)Ulrike Scheucher's office/$$(li)Juri Höfler's favorite literature/$"
+        },
+        {
+            "type": "patchouli:image",
+            "images": ["ntx4core:textures/gui/manual/borg_screenshot.png"],
+            "text": "$(o)The BORG as seen from above/$"
+        },
+        {
+            "type": "patchouli:entity",
+            "entity": "minecraft:villager",
+            "name": "Ulrike Scheucher",
+            "text": "The one and only Ulrike Scheucher, world's best latin teacher"
+        },
+        {
+            "type": "patchouli:entity",
+            "entity": "minecraft:villager",
+            "name": "Juri Höfler",
+            "text": "Juri Höfler, the school's director and passionate Mein Kampf reader"
+        }
+    ]
+}

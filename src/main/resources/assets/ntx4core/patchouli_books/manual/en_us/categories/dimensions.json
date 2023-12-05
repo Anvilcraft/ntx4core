@@ -1,0 +1,6 @@
+{
+    "name": "Dimensions",
+    "description": "The dimensions of Notex 4$(br2)$(l)The first page of each dimension entry will contain an item you must throw into the portal frame to activate it!/$",
+    "icon": "minecraft:end_portal_frame",
+    "sortnum": 1
+}

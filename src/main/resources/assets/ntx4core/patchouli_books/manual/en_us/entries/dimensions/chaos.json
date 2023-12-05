@@ -1,0 +1,31 @@
+{
+    "category": "ntx4core:dimensions",
+    "name": "Chaos",
+    "icon": "chemlib:oganesson",
+    "sortnum": 1,
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "title": "The Chaos Dimension",
+            "item": "chemlib:oganesson",
+            "text": "$(thing)The Chaos Dimension/$ is a chaotic mess of biomes and blocks in a grid-like layout. It seems tilera might've ran out of ideas here."
+        },
+        {
+            "type": "patchouli:multiblock",
+            "name": "Chaos Portal",
+            "multiblock": {
+                "pattern": [
+                    ["_##_"],
+                    ["#  #"],
+                    ["#  #"],
+                    ["#0 #"],
+                    ["_##_"]
+                ],
+                "mapping": {
+                    "#": "minecraft:end_stone"
+                },
+                "symmetrical": true
+            }
+        }
+    ]
+}

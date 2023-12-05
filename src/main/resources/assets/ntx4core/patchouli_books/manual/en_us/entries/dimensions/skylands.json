@@ -1,0 +1,31 @@
+{
+    "category": "ntx4core:dimensions",
+    "name": "Skylands Dimension",
+    "icon": "minecraft:water_bucket",
+    "sortnum": 6,
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "title": "The Skylands Dimension",
+            "item": "minecraft:water_bucket",
+            "text": "The $(thing)Skylands Dimension/$ is a heavenly place consisting of endless floating islands. $(#f00)Unlike all other portals, it is activated not by dropping, but by placing a water bucket inside./$$(br2)$(o)Seems oddly familiar.../$"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "name": "Skylands Portal",
+            "multiblock": {
+                "pattern": [
+                    ["_##_"],
+                    ["#  #"],
+                    ["#  #"],
+                    ["#0 #"],
+                    ["_##_"]
+                ],
+                "mapping": {
+                    "#": "minecraft:glowstone"
+                },
+                "symmetrical": true
+            }
+        }
+    ]
+}
