@@ -29,27 +29,27 @@ public class ShapedRecipes implements IEventBusRegisterable {
                               .ingredient('C', "mekanism:teleportation_core")
                               .ingredient('E', "mekanism:energy_tablet")
                               .build());
-        ev.registerRecipe(new ShapedRecipeBuilder(
-                Ntx4Core.id("dark_matter_conversion"), 
+        ev.registerRecipe(
+            new ShapedRecipeBuilder(
+                Ntx4Core.id("dark_matter_conversion"),
                 Util.stackFromRegistry(new Identifier("projecte", "dark_matter"))
             )
-            .pattern("FDF", "DDD", "FDF")
-            .ingredient('D', "nuclearscience:celldarkmatter")
-            .ingredient('F', "projecte:aeternalis_fuel")
-            .build()
+                .pattern("FDF", "DDD", "FDF")
+                .ingredient('D', "nuclearscience:celldarkmatter")
+                .ingredient('F', "projecte:aeternalis_fuel")
+                .build()
         );
 
         ev.registerRecipe(new ShapedRecipeBuilder(
-                Ntx4Core.id("inscriber"), 
-                Util.stackFromRegistry(new Identifier("ae2", "inscriber"))
-            )
-            .pattern("IPI", "DCD", "IPI")
-            .ingredient('I', "#forge:ingots/steel")
-            .ingredient('D', "#forge:dusts/fluix")
-            .ingredient('C', "industrialforegoing:machine_frame_simple")
-            .ingredient('P', "minecraft:piston")
-            .build()
-        );
+                              Ntx4Core.id("inscriber"),
+                              Util.stackFromRegistry(new Identifier("ae2", "inscriber"))
+        )
+                              .pattern("IPI", "DCD", "IPI")
+                              .ingredient('I', "#forge:ingots/steel")
+                              .ingredient('D', "#forge:dusts/fluix")
+                              .ingredient('C', "industrialforegoing:machine_frame_simple")
+                              .ingredient('P', "minecraft:piston")
+                              .build());
     }
 
     @Override

@@ -90,9 +90,11 @@ public class Ntx4Core {
         }
     }
 
-    public void registerRecipeSerializers(RegistryEvent.Register<RecipeSerializer<?>> event) {
+    public void
+    registerRecipeSerializers(RegistryEvent.Register<RecipeSerializer<?>> event) {
         event.getRegistry().registerAll(
-                new SpecialRecipeSerializer<>(OrbDuplicationRecipe::new).setRegistryName("orb_duplication")
+            new SpecialRecipeSerializer<>(OrbDuplicationRecipe::new)
+                .setRegistryName("orb_duplication")
         );
     }
 }

@@ -57,11 +57,11 @@ public class InputReplacements implements IEventBusRegisterable {
             )
         );
 
-        var philosopherStoneMapper = new InputReplaceRecipeMapper()
-            .replace("#forge:gems/diamond", "ae2:singularity")
-            .replace("#forge:dusts/redstone", "chemlib:erbium_dust")
-            .replace("#forge:dusts/glowstone", "psi:ivory_substance")
-        ;
+        var philosopherStoneMapper
+            = new InputReplaceRecipeMapper()
+                  .replace("#forge:gems/diamond", "ae2:singularity")
+                  .replace("#forge:dusts/redstone", "chemlib:erbium_dust")
+                  .replace("#forge:dusts/glowstone", "psi:ivory_substance");
         ev.mapRecipeID(
             new Identifier("projecte", "philosophers_stone"), philosopherStoneMapper
         );

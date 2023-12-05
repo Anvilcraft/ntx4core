@@ -21,10 +21,12 @@ public class RecipeRemovals implements IEventBusRegisterable {
         ));
         ev.removeRecipesMatching((r) -> {
             var id = r.getId();
-            return id.getNamespace().equals("createappliedkinetics") && id.getPath().startsWith("inscriber");
+            return id.getNamespace().equals("createappliedkinetics")
+                && id.getPath().startsWith("inscriber");
         });
         ev.removeRecipeID(new Identifier("projecte", "red_matter_alt"));
-        ev.removeRecipeID(new Identifier("draconicevolution", "components/awakened_core"));
+        ev.removeRecipeID(new Identifier("draconicevolution", "components/awakened_core")
+        );
         ev.removeRecipeID(new Identifier("electrodynamics", "ingotsteel_ingot_smelting"));
         ev.removeRecipeID(new Identifier("beyond_earth", "steel_ingot_blasting"));
         ev.removeRecipeID(new Identifier("enderrift", "rift_orb"));
