@@ -7,6 +7,6 @@
     },
     "output": {
       "gas": "mekanism:antimatter",
-      "amount": 400
+      "amount": 4
     }
   }

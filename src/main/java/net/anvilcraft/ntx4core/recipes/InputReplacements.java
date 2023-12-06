@@ -25,14 +25,14 @@ public class InputReplacements implements IEventBusRegisterable {
         ev.mapRecipeID(
             new Identifier("projecte", "relay_mk1"),
             new InputReplaceRecipeMapper().replace(
-                "#forge:storage_blocks/diamond", "mekanism:pellet_antimatter"
+                "#forge:storage_blocks/diamond", "ftbic:antimatter"
             )
         );
 
         ev.mapRecipeID(
             new Identifier("projecte", "collector_mk1"),
             new InputReplaceRecipeMapper().replace(
-                "#forge:storage_blocks/diamond", "mekanism:pellet_antimatter"
+                "#forge:storage_blocks/diamond", "ftbic:antimatter"
             )
         );
 
@@ -54,6 +54,13 @@ public class InputReplacements implements IEventBusRegisterable {
             new Identifier("advgenerators", "crafting/controller"),
             new InputReplaceRecipeMapper().replace(
                 "#forge:ingots/iron", "#forge:ingots/steel"
+            )
+        );
+
+        ev.mapRecipeID(
+            new Identifier("ftbic", "shaped/antimatter_fabricator"), 
+            new InputReplaceRecipeMapper().replace(
+                "minecraft:nether_star", "draconicevolution:awakened_core"
             )
         );
 

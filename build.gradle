@@ -79,5 +79,16 @@ publishing {
         }
     }
 
-    repositories {}
+    repositories {
+        if (project.hasProperty("mvnURL")) {
+            maven {
+                credentials {
+                    username findProperty("mvnUsername")
+                    password findProperty("mvnPassword")
+                }
+                url = findProperty("mvnURL")
+            }
+        }
+        mavenLocal()
+    }
 }

@@ -2,11 +2,11 @@
     "type": "mekanism:oxidizing",
     "input": {
       "ingredient": {
-        "item": "nuclearscience:cellantimattersmall"
+        "tag": "forge:pellets/antimatter"
       }
     },
     "output": {
       "gas": "mekanism:antimatter",
-      "amount": 50
+      "amount": 10
     }
   }

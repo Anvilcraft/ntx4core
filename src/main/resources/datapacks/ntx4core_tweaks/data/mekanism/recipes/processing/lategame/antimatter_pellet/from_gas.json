@@ -1,0 +1,11 @@
+{
+    "type": "mekanism:crystallizing",
+    "chemicalType": "gas",
+    "input": {
+      "amount": 10,
+      "gas": "mekanism:antimatter"
+    },
+    "output": {
+      "item": "mekanism:pellet_antimatter"
+    }
+  }

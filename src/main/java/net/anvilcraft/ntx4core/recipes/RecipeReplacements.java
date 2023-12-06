@@ -155,7 +155,7 @@ public class RecipeReplacements implements IEventBusRegisterable {
             -> new ShapedRecipeBuilder(Ntx4Core.id("dark_matter"), r.getOutput())
                    .pattern("DFD", "FSF", "DFD")
                    .ingredient('F', "projecte:aeternalis_fuel")
-                   .ingredient('S', "mekanism:pellet_antimatter")
+                   .ingredient('S', "ftbic:antimatter")
                    .ingredient('D', "#forge:ingots/draconium")
                    .build()
         );
@@ -164,10 +164,11 @@ public class RecipeReplacements implements IEventBusRegisterable {
             new Identifier("projecte", "red_matter"),
             r
             -> new ShapedRecipeBuilder(Ntx4Core.id("red_matter"), r.getOutput())
-                   .pattern("CDC", "QSE", "CDC")
+                   .pattern("CAC", "QSE", "CDC")
                    .ingredient('D', "projecte:dark_matter")
                    .ingredient('Q', "assemblylinemachines:quark_matter")
                    .ingredient('E', "dmlreforged:pristine_matter_dragon")
+                   .ingredient('A', "ftbic:antimatter")
                    .ingredient('S', "ae2:singularity")
                    .ingredient('C', "powah:crystal_nitro")
                    .build()
