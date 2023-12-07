@@ -8,6 +8,10 @@
         "common.ForgeFlowingFluidMixin"
     ],
     "client": [
+        "client.EntryListWidgetMixin",
+        "client.MinecraftClientMixin",
+        "client.ScreenMixin",
+        "client.SelectWorldScreenMixin",
         "client.SplashOverlayMixin",
         "client.TitleScreenMixin"
     ],

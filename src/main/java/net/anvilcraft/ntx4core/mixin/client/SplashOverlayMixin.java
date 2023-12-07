@@ -10,30 +10,22 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
-import com.mojang.blaze3d.platform.GlDebugInfo;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import net.anvilcraft.ntx4core.AlecManager;
 import net.anvilcraft.ntx4core.Ntx4Core;
 import net.anvilcraft.ntx4core.Ntx4CoreShaders;
+import net.anvilcraft.ntx4core.RenderHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Overlay;
 import net.minecraft.client.gui.screen.SplashOverlay;
-import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.BufferRenderer;
 import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.render.Tessellator;
-import net.minecraft.client.render.VertexFormat.DrawMode;
-import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.resource.ResourceReload;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.ColorHelper.Argb;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Vec3f;
 import net.minecraftforge.client.loading.ClientModLoader;
 
 @Mixin(SplashOverlay.class)
@@ -69,16 +61,12 @@ public class SplashOverlayMixin extends Overlay {
     @Shadow
     private long reloadCompleteTime;
 
-    @Unique
-    private float time = 0.0f;
-
     /**
      * @reason Replaces the vanilla spash screen
      * @author LordMZTE
      */
     @Overwrite
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        time += delta;
         if (Ntx4CoreShaders.SPLASH == null) {
             Ntx4CoreShaders.registerShaders();
         }
@@ -120,81 +108,8 @@ public class SplashOverlayMixin extends Overlay {
         } else {
             f2 = 1.0F;
         }
-        // This shader is somehow borked on Intel. Not My fault!
-        if (!GlDebugInfo.getVendor().equals("Intel")) {
-            RenderSystem.setShader(() -> Ntx4CoreShaders.SPLASH);
-            Ntx4CoreShaders.SPLASH.getUniform("Time").set(this.time / 20.0f);
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f2);
-            BufferBuilder buf = Tessellator.getInstance().getBuffer();
-            buf.begin(DrawMode.QUADS, VertexFormats.POSITION);
-            buf.vertex(-1.0, -1.0, 0.0).next();
-            buf.vertex(1.0, -1.0, 0.0).next();
-            buf.vertex(1.0, 1.0, 0.0).next();
-            buf.vertex(-1.0, 1.0, 0.0).next();
-            buf.end();
-            BufferRenderer.draw(buf);
 
-            if (AlecManager.HAS_ALEC) {
-                float offset_x = (float) Math.sin(this.time / 25.);
-                float offset_y = (float) Math.cos(this.time / 25.);
-
-                var mtx = Matrix4f.viewboxMatrix(45., 1.f, 0.1f, 100.f);
-                mtx.multiply(Matrix4f.translate(offset_x, offset_y, -5.f));
-                mtx.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(this.time * 4.f));
-                // clang-format off
-                mtx.multiply(new Matrix4f(new float[]{
-                    1.f, 0.f, 0.f, 0.f,
-                    0.f, -1.f, 0.f, 0.f,
-                    0.f, 0.f, 1.f, 0.f,
-                    0.f, 0.f, 0.f, 1.f,
-                }));
-                // clang-format on
-
-                RenderSystem.setShader(() -> Ntx4CoreShaders.ALECUBUS);
-                RenderSystem.setShaderTexture(0, ALEC);
-                Ntx4CoreShaders.ALECUBUS.getUniform("Mtx").set(mtx);
-
-                buf.begin(DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
-
-                alecVert(buf, -0.5, -0.5, -0.5, 1.0, 0.0);
-                alecVert(buf, 0.5, -0.5, -0.5, 0.0, 0.0);
-                alecVert(buf, 0.5, 0.5, -0.5, 0.0, 1.0);
-                alecVert(buf, -0.5, 0.5, -0.5, 1.0, 1.0);
-
-                alecVert(buf, -0.5, -0.5, 0.5, 0.0, 0.0);
-                alecVert(buf, 0.5, -0.5, 0.5, 1.0, 0.0);
-                alecVert(buf, 0.5, 0.5, 0.5, 1.0, 1.0);
-                alecVert(buf, -0.5, 0.5, 0.5, 0.0, 1.0);
-
-                alecVert(buf, -0.5, 0.5, 0.5, 1.0, 1.0);
-                alecVert(buf, -0.5, 0.5, -0.5, 0.0, 1.0);
-                alecVert(buf, -0.5, -0.5, -0.5, 0.0, 0.0);
-                alecVert(buf, -0.5, -0.5, 0.5, 1.0, 0.0);
-
-                alecVert(buf, 0.5, 0.5, 0.5, 0.0, 1.0);
-                alecVert(buf, 0.5, 0.5, -0.5, 1.0, 1.0);
-                alecVert(buf, 0.5, -0.5, -0.5, 1.0, 0.0);
-                alecVert(buf, 0.5, -0.5, 0.5, 0.0, 0.0);
-
-                alecVert(buf, -0.5, -0.5, -0.5, 0.0, 1.0);
-                alecVert(buf, 0.5, -0.5, -0.5, 1.0, 1.0);
-                alecVert(buf, 0.5, -0.5, 0.5, 1.0, 0.0);
-                alecVert(buf, -0.5, -0.5, 0.5, 0.0, 0.0);
-
-                alecVert(buf, -0.5, 0.5, -0.5, 0.0, 1.0);
-                alecVert(buf, 0.5, 0.5, -0.5, 1.0, 1.0);
-                alecVert(buf, 0.5, 0.5, 0.5, 1.0, 0.0);
-                alecVert(buf, -0.5, 0.5, 0.5, 0.0, 0.0);
-
-                buf.end();
-
-                GlStateManager._enableDepthTest();
-                GlStateManager._disableCull();
-                BufferRenderer.draw(buf);
-                GlStateManager._disableDepthTest();
-                GlStateManager._enableCull();
-            }
-        }
+        RenderHelper.renderSplashScreen(f2);
 
         l1 = (int) ((double) this.client.getWindow().getScaledWidth() * 0.5D);
         int k2 = (int) ((double) this.client.getWindow().getScaledHeight() * 0.5D);
@@ -265,11 +180,6 @@ public class SplashOverlayMixin extends Overlay {
                 );
             }
         }
-    }
-
-    private void
-    alecVert(BufferBuilder buf, double x, double y, double z, double u, double v) {
-        buf.vertex((float) x, (float) y, (float) z).texture((float) u, (float) v).next();
     }
 
     private void renderProgressBar(
