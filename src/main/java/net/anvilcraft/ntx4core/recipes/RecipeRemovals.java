@@ -30,6 +30,7 @@ public class RecipeRemovals implements IEventBusRegisterable {
         ev.removeRecipeID(new Identifier("electrodynamics", "ingotsteel_ingot_smelting"));
         ev.removeRecipeID(new Identifier("beyond_earth", "steel_ingot_blasting"));
         ev.removeRecipeID(new Identifier("enderrift", "rift_orb"));
+        ev.removeRecipeID(new Identifier("crossroads", "base_materials/bronze_alloy_ingot"));
     }
 
     @Override
