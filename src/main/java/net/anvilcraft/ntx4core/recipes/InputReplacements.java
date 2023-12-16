@@ -84,6 +84,21 @@ public class InputReplacements implements IEventBusRegisterable {
         ev.mapRecipes(new InputReplaceRecipeMapper().replace(
             "thermal:machine_frame", "industrialforegoing:machine_frame_simple"
         ));
+
+        // Creative Flight tweaks
+        ev.mapRecipeID(
+            new Identifier("mekanism", "module_gravitational_modulating_unit"), 
+            new InputReplaceRecipeMapper()
+                .replace("#forge:nether_stars", "projecte:swiftwolf_rending_gale")
+                .replace("mekanism:ultimate_induction_provider", "projecte:klein_star_omega")
+        );
+
+        ev.mapRecipeID(
+            new Identifier("assemblylinemachines", "crafting/mystium_flight_harness"), 
+            new InputReplaceRecipeMapper()
+                .replace("minecraft:elytra", "projecte:swiftwolf_rending_gale")
+                .replace("minecraft:phantom_membrane", "projecte:klein_star_omega")
+        );
     }
 
     @Override
