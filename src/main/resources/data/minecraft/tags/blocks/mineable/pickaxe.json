@@ -1,5 +1,9 @@
 {
     "values": [
-        "ntx4core:alecubus"
+        "ntx4core:alecubus",
+        "dmlreforged:machine_casing",
+        "dmlreforged:simulation_chamber",
+        "dmlreforged:extraction_chamber",
+        "dmlreforged:infused_ingot_block"
     ]
 }
