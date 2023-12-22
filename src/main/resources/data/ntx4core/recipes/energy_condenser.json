@@ -1,0 +1,37 @@
+{
+    "type": "draconicevolution:fusion_crafting",
+    "result": {
+        "item": "projecte:condenser_mk1"
+    },
+    "catalyst": {
+        "item": "projecte:alchemical_chest"
+    },
+    "total_energy": 10000000,
+    "tier": "DRACONIC",
+    "ingredients": [
+        {
+            "item": "ae2:condenser"
+        },
+        {
+            "item": "projecte:relay_mk3"
+        },
+        {
+            "item": "mekanismmatter:matter_synthesizer"
+        },
+        {
+            "item": "mekanismmatter:matter_fabricator"
+        },
+        {
+            "item": "alchemistry:dissolver"
+        },
+        {
+            "item": "alchemistry:compactor"
+        },
+        {
+            "item": "projecte:philosophers_stone"
+        },
+        {
+            "item": "ntx4core:awakened_construct"
+        }
+    ]
+}

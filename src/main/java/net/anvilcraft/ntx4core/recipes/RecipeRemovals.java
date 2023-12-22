@@ -14,9 +14,6 @@ public class RecipeRemovals implements IEventBusRegisterable {
             return;
 
         ev.removeRecipesMatching(new RecipeContainsPredicate(
-            Util.stackFromRegistry(new Identifier("projecte", "condenser_mk1"))
-        ));
-        ev.removeRecipesMatching(new RecipeContainsPredicate(
             Util.stackFromRegistry(new Identifier("projecte", "transmutation_table"))
         ));
         ev.removeRecipesMatching((r) -> {
@@ -31,6 +28,7 @@ public class RecipeRemovals implements IEventBusRegisterable {
         ev.removeRecipeID(new Identifier("beyond_earth", "steel_ingot_blasting"));
         ev.removeRecipeID(new Identifier("enderrift", "rift_orb"));
         ev.removeRecipeID(new Identifier("crossroads", "base_materials/bronze_alloy_ingot"));
+        ev.removeRecipeID(new Identifier("projecte", "condenser_mk1"));
     }
 
     @Override
