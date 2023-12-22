@@ -2,11 +2,11 @@
     "type": "mekanism:oxidizing",
     "input": {
       "ingredient": {
-        "item": "ftbic:antimatter"
+        "item": "chemlib:polonium_dust"
       }
     },
     "output": {
-      "gas": "mekanism:antimatter",
-      "amount": 40
+      "gas": "mekanism:polonium",
+      "amount": 50
     }
-  }
+}

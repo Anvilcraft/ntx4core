@@ -14,12 +14,17 @@ public class InputReplacements implements IEventBusRegisterable {
 
         ev.mapRecipeID(
             new Identifier("draconicevolution", "components/draconium_core"),
-            new InputReplaceRecipeMapper().replace("#forge:ingots/draconium", darkMatter)
+            new InputReplaceRecipeMapper().replace("#forge:ingots/gold", "#forge:pellets/polonium")
         );
 
         ev.mapRecipeID(
             new Identifier("draconicevolution", "components/wyvern_core"),
             new InputReplaceRecipeMapper().replace("#forge:ingots/draconium", darkMatter)
+        );
+
+        ev.mapRecipeID(
+            new Identifier("draconicevolution", "wyvern_relay_crystal"),
+            new InputReplaceRecipeMapper().replace("draconicevolution:draconium_core", "draconicevolution:wyvern_core")
         );
 
         ev.mapRecipeID(
@@ -63,6 +68,18 @@ public class InputReplacements implements IEventBusRegisterable {
                 "minecraft:nether_star", "draconicevolution:awakened_core"
             )
         );
+
+        ev.mapRecipeID(
+            new Identifier("mekanism", "antiprotonic_nucleosynthesizer"), 
+            new InputReplaceRecipeMapper().replace(
+                "#forge:pellets/antimatter", 
+                "draconicevolution:wyvern_core"
+            )
+        );
+
+        ev.mapRecipes(new InputReplaceRecipeMapper().replace(
+            "mekanism:pellet_polonium", "#forge:pellets/polonium"
+        ));
 
         var philosopherStoneMapper
             = new InputReplaceRecipeMapper()

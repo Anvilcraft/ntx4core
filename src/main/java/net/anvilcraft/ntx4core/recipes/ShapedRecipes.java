@@ -40,6 +40,18 @@ public class ShapedRecipes implements IEventBusRegisterable {
                 .build()
         );
 
+        ev.registerRecipe(
+            new ShapedRecipeBuilder(
+                Ntx4Core.id("antimatter"),
+                Util.stackFromRegistry(new Identifier("ftbic", "antimatter"))
+            )
+                .pattern("FPF", "PMP", "FPF")
+                .ingredient('P', "#forge:pellets/antimatter")
+                .ingredient('F', "#forge:dusts/fluix")
+                .ingredient('M', "ae2:matter_ball")
+                .build()
+        );
+
         ev.registerRecipe(new ShapedRecipeBuilder(
                               Ntx4Core.id("inscriber"),
                               Util.stackFromRegistry(new Identifier("ae2", "inscriber"))
