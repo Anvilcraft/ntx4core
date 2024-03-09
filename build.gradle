@@ -22,6 +22,7 @@ repositories {
     maven { url "https://maven.tilera.xyz/" }
     maven { url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
     maven { url "https://maven.blamejared.com" }
+    maven { url "https://cursemaven.com" }
 }
 
 dependencies {
@@ -34,6 +35,7 @@ dependencies {
     modImplementation "software.bernie.geckolib:geckolib-forge-1.18:3.0.57"
     modImplementation "net.anvilcraft:anvillib-18-forge:1.1.0"
     modImplementation "vazkii.patchouli:Patchouli:1.18.2-66"
+    modImplementation "curse.maven:deep-mob-learning-reforged-621711:3922792"
 }
 
 processResources {

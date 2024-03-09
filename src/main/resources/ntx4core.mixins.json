@@ -5,7 +5,8 @@
     "minVersion": "0.8",
     "mixins": [
         "accessor.StructureFeatureAccessor",
-        "common.ForgeFlowingFluidMixin"
+        "common.ForgeFlowingFluidMixin",
+        "common.PlayerHanlderMixin"
     ],
     "client": [
         "client.EntryListWidgetMixin",
